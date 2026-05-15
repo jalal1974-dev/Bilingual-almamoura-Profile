@@ -1,7 +1,7 @@
 import { Router, type IRouter } from "express";
 import { db } from "@workspace/db";
 import { contactSubmissionsTable, insertContactSubmissionSchema } from "@workspace/db/schema";
-import { z } from "zod";
+import { desc } from "drizzle-orm";
 
 const router: IRouter = Router();
 
@@ -22,6 +22,20 @@ router.post("/contact", async (req, res) => {
   } catch (err) {
     console.error("Contact form error:", err);
     res.status(500).json({ error: "Failed to save submission" });
+  }
+});
+
+router.get("/contact", async (_req, res) => {
+  try {
+    const submissions = await db
+      .select()
+      .from(contactSubmissionsTable)
+      .orderBy(desc(contactSubmissionsTable.createdAt));
+
+    res.json(submissions);
+  } catch (err) {
+    console.error("Fetch submissions error:", err);
+    res.status(500).json({ error: "Failed to fetch submissions" });
   }
 });
 
