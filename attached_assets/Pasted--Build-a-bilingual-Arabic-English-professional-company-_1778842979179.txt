@@ -1,0 +1,144 @@
+
+Build a bilingual (Arabic/English) professional company profile website for Al-Maamoura Advisory & Commercial Brokerage Co.
+
+Company Information
+English name: Al-Maamoura Advisory & Commercial Brokerage Co.
+Arabic name: شركة المعمورة للاستشارات والوساطة التجارية
+Tagline EN: Strategic Advisory · Commercial Brokerage · Wealth Management
+Tagline AR: الاستشارات الاستراتيجية · الوساطة التجارية · إدارة الثروات
+Location: Amman, Jordan | MENA · GCC · Europe · Africa · Asia
+Experience: 60+ years of combined expertise
+
+Design Requirements
+
+Single-page React app (or one HTML file with all CSS/JS inline)
+Color palette: Deep navy #0D1B2E (primary), gold #C09030 (accent), white #FFFFFF, light grey #F5F5F5, text grey #555555
+Typography: Use Google Fonts — "Playfair Display" for headings (EN), "Amiri" or "Scheherazade New" for Arabic headings, "Inter" for EN body, "Tajawal" for AR body
+Language toggle button (top-right): switches entire page between English (LTR) and Arabic (RTL) — the dir attribute on <html> must flip, and layout must mirror properly
+Fully responsive — mobile, tablet, desktop
+Smooth scroll between sections
+Subtle animations on scroll (fade-in, slide-up for cards)
+Professional, premium feel — think corporate consultancy, not startup
+
+
+Page Sections (in order)
+1. Navigation / Header
+
+Logo: "المعمورة | Al-Maamoura" in gold on navy background
+Nav links: About · Vision · Values · Leadership · Services · Sectors · Methodology · Projects · Contact
+Language toggle button: EN | عربي — styled as a pill button in gold
+Sticky on scroll, slight shadow when scrolled
+
+2. Hero Section
+
+Full-width, navy background with subtle geometric pattern or diagonal lines overlay
+Large headline (EN): "Strategic Advisory. Commercial Brokerage. Built on 60 Years of Expertise."
+Large headline (AR): "استشارات استراتيجية. وساطة تجارية. مبنية على أكثر من 60 عاماً من الخبرة."
+Subheadline: location/tagline
+Two CTA buttons: "Our Services" (gold filled) and "Meet Our Team" (outlined)
+Animated gold divider line below
+
+3. About Us (من نحن)
+
+Section number badge: 01
+Two-column layout: left = heading + body text, right = 3 highlight stat cards (60+ Years, 5 Regions, 10+ Sectors)
+Body text EN: "Al-Maamoura Advisory & Commercial Brokerage Co. is a professional business consultancy and commercial advisory firm delivering strategic solutions across business development, project finance, commercial brokerage, investment advisory, and project management. Established through the combined expertise of highly experienced professionals with over 60 years of cumulative experience, Al-Maamoura provides practical, innovative, and results-driven solutions designed for regional and international markets. We support clients across the Middle East, GCC, Europe, Africa, and Asia through integrated advisory services enabling sustainable growth, operational excellence, financial optimization, and strategic expansion."
+Body text AR: "شركة المعمورة للاستشارات والوساطة التجارية هي شركة استشارات أعمال مهنية وشركة استشارية تجارية، تقدم حلولاً استراتيجية في مجالات تطوير الأعمال وتمويل المشاريع والوساطة التجارية والاستشارات الاستثمارية وإدارة المشاريع. تأسست الشركة من خلال الخبرة المشتركة لمهنيين متمرسين ذوي أكثر من 60 عاماً من الخبرة التراكمية، وتقدم المعمورة حلولاً عملية ومبتكرة وموجهة نحو النتائج مصممة للأسواق الإقليمية والدولية. تدعم شركتنا العملاء في الشرق الأوسط والخليج العربي وأوروبا وأفريقيا وآسيا من خلال خدمات استشارية متكاملة."
+
+4. Vision & Mission (الرؤية والرسالة)
+
+Section number badge: 02
+Navy background section
+Two cards side by side: Vision card + Mission card, gold icon (eye / target), white text
+Vision EN: "To become the leading regional advisory and commercial brokerage firm known for delivering innovative business solutions, strategic partnerships, and sustainable investment opportunities across industries."
+Vision AR: "أن تكون الشركة الاستشارية والوساطة التجارية الإقليمية الرائدة المعروفة بتقديم حلول أعمال مبتكرة وشراكات استراتيجية وفرص استثمارية مستدامة عبر مختلف الصناعات."
+Mission EN: "Empowering businesses and investors through professional advisory, structured financial solutions, project development expertise, and commercial brokerage services that create long-term value and sustainable growth."
+Mission AR: "تمكين الشركات والمستثمرين من خلال الاستشارات المهنية والحلول المالية المنظمة وخبرات تطوير المشاريع والخدمات الاستشارية التجارية التي تخلق قيمة طويلة الأجل ونمواً مستداماً."
+
+5. Core Values (القيم الجوهرية)
+
+Section number badge: 03
+6 value cards in a 3×2 grid, light grey background
+Each card: gold icon + bold title + description
+Values:
+
+Integrity & Transparency / النزاهة والشفافية — "A steadfast commitment to ethical conduct and open, honest communication in every client interaction." / "التزام راسخ بالسلوك الأخلاقي والتواصل المفتوح والصادق في كل تعامل مع العملاء."
+Professional Excellence / التميز المهني — "Delivering the highest standards of expertise, quality, and professionalism across all our services." / "تقديم أعلى معايير الخبرة والجودة والاحترافية في جميع خدماتنا."
+Client Commitment / الالتزام بالعميل — "Placing client success at the heart of every decision, recommendation, and solution we deliver." / "وضع نجاح العميل في قلب كل قرار وتوصية وحل نقدمه."
+Strategic Partnerships / الشراكات الاستراتيجية — "Building lasting alliances that create mutual value and open new horizons for all parties." / "بناء تحالفات دائمة تخلق قيمة متبادلة وتفتح آفاقاً جديدة لجميع الأطراف."
+Innovation & Sustainability / الابتكار والاستدامة — "Embracing creative thinking and responsible practices to deliver lasting, long-term outcomes." / "تبني التفكير الإبداعي والممارسات المسؤولة لتحقيق نتائج دائمة وطويلة الأمد."
+Reliability & Accountability / الموثوقية والمساءلة — "Fulfilling every commitment with consistency, personal ownership, and measurable results." / "الوفاء بكل التزام بالاتساق والملكية الشخصية والنتائج القابلة للقياس."
+
+
+
+6. Leadership Team (فريق القيادة)
+
+Section number badge: 04
+Intro text EN: "Al-Maamoura is led by seasoned professionals whose combined expertise spans more than 60 years across aviation, business development, financial advisory, and international trade."
+Intro text AR: "تقود المعمورة قيادة متمرسة بخبرة تتجاوز 60 عاماً تراكمية في قطاعات الطيران وتطوير الأعمال والاستشارات المالية والتجارة الدولية."
+Stacked vertical layout — Chairman first, then Managing Partner below (not side by side)
+Each leader card: avatar placeholder circle with initials (gold on navy), title in gold, name in bold, bio text
+Chairman:
+
+Title EN: CHAIRMAN | Title AR: رئيس مجلس الإدارة
+Name EN: Capt. Mohammad Alkhashman | Name AR: الكابتن محمد الخشمان
+Bio EN: "With more than 30 years of experience in the aviation industry, serving in the Royal Jordanian Air Force, Capt. Mohammad Alkhashman established his own aviation company — the first privately owned Jordanian airline operating in Jordan and the Middle East."
+Bio AR: "يمتلك أكثر من 30 عاماً من الخبرة في صناعة الطيران، خدم خلالها في سلاح الجو الملكي الأردني. أسس الكابتن محمد الخشمان شركته الخاصة لتكون أول شركة طيران خاصة أردنية تعمل في الأردن والشرق الأوسط."
+
+
+Managing Partner:
+
+Title EN: MANAGING PARTNER | Title AR: الشريك المدير
+Name EN: Mohammed Abdelrahman | Name AR: محمد عبدالرحمن
+Bio EN: "With over 30 years of experience, Mohammed Abdelrahman is a strategic consultant specializing in business development, financial advisory, and international trade across MENA and global markets, recognized for driving growth through innovative restructuring and high-value commercial partnerships."
+Bio AR: "يتمتع بخبرة تتجاوز 30 عاماً كمستشار استراتيجي متخصص في تطوير الأعمال والاستشارات المالية والتجارة الدولية عبر أسواق منطقة الشرق الأوسط وشمال أفريقيا والأسواق العالمية."
+
+
+
+7. Consulting Methodology (منهجية الاستشارات)
+
+Section number badge: 05
+Navy background
+5-step horizontal process (vertical on mobile), connected by a gold line
+Steps EN: 1. Assessment & Discovery → 2. Strategic Planning → 3. Solution Design → 4. Implementation Support → 5. Monitoring & Evaluation
+Steps AR: 1. التقييم والاكتشاف → 2. التخطيط الاستراتيجي → 3. تصميم الحلول → 4. دعم التنفيذ → 5. الرقابة والتقييم
+Each step: numbered gold circle, bold title, short description
+
+8. Sectors We Serve (القطاعات التي نخدمها)
+
+Section number badge: 06
+10 sector badges/chips in a wrap grid, each with an icon and label
+Sectors: Aviation & Aerospace / الطيران والفضاء · Real Estate Development / التطوير العقاري · Hospitality & Tourism / الضيافة والسياحة · Healthcare / الرعاية الصحية · Education / التعليم · Renewable Energy / الطاقة المتجددة · Industrial Manufacturing / التصنيع الصناعي · Commercial Trade / التجارة التجارية · Financial Services / الخدمات المالية · Oil & Gas Services / خدمات النفط والغاز
+
+9. Our Services (خدماتنا)
+
+Section number badge: 07
+5 expandable accordion cards (or tabs), navy/gold styling
+A. Business & Commercial Consultancy / استشارات الأعمال والاستشارات التجارية — list: Business Development Strategy, Corporate Restructuring & Organizational Development, Feasibility Studies, Market Research & Analysis, Financial & Technical Advisory, Corporate Governance, Training & Capacity Building, PMO Development, Operational Performance Improvement, Commercial Expansion Support
+B. Structured Finance & Investment Advisory / التمويل المنظم والاستشارات الاستثمارية — list: Investment Structuring, Capital Raising Support, Investor Relations Support, Commercial & Financial Advisory, International Investment Opportunities, Trade Finance Solutions, Advisory & Due Diligence
+C. Commercial Brokerage Services / خدمات الوساطة التجارية — list: Commercial Transactions, Buy & Sell Brokerage Deals, International Business Matching, Strategic Partnerships, Project Acquisition Support, Investment Introductions, Cross-Border Trade Facilitation
+D. Project Development & Management / تطوير المشاريع وإدارتها — list: Project Planning & Development, Project Delivery Systems, Project Monitoring & Reporting, Cost Control Systems, PMO, Feasibility & Investment Studies, Operational Structuring, Business Process Optimization
+E. International Tendering & Registration Support / دعم المناقصات الدولية والتسجيل — list: SAM (System for Award Management), USAID Registration Support, UN Supplier Registration, JCCS Registration Support, International Tender Participation Advisory, Government & Institutional Procurement Access
+
+10. Contact / Footer
+
+Navy background
+Company name in gold, tagline
+Location: Amman, Jordan
+Simple contact form: Name, Email, Message, Send button (gold)
+Footer bottom bar: © 2025 Al-Maamoura Advisory & Commercial Brokerage Co. All rights reserved.
+
+
+Technical Notes
+
+All text must be stored in a translations object with en and ar keys, toggled by a lang state variable
+When lang === 'ar': set document.documentElement.dir = 'rtl', use Arabic font, right-align text
+When lang === 'en': set document.documentElement.dir = 'ltr', use English font, left-align
+Use useEffect to update dir and lang attribute on <html> on toggle
+Animate section entries with IntersectionObserver or a CSS class toggled on scroll
+No external UI libraries — pure React + inline styles or a single <style> block
+Gold accent #C09030 for all highlights, borders, icons, and CTAs
+The language button should be always visible (fixed or sticky in nav)
+
+
+Paste this prompt directly into a new Claude conversation and it will build the full website as a single React artifact.
