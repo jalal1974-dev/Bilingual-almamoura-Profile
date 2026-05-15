@@ -164,7 +164,10 @@ export function Hero() {
           transition={{ duration: 0.8, ease: 'easeOut' }}
           className="max-w-4xl"
         >
-          <span className="inline-block text-secondary tracking-widest uppercase text-sm mb-6 font-semibold">
+          <span
+            className="inline-block text-white tracking-widest uppercase text-sm mb-6 font-semibold"
+            style={{ textShadow: '0 1px 6px rgba(0,0,0,0.6)' }}
+          >
             {t.hero.subheadline}
           </span>
 
