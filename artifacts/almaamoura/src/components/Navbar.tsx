@@ -69,7 +69,7 @@ export function Navbar() {
           ))}
           <button
             onClick={toggleLang}
-            className="px-4 py-1.5 rounded-full bg-secondary/20 text-secondary border border-secondary hover:bg-secondary hover:text-white transition-all text-sm font-medium"
+            className="px-4 py-1.5 rounded-full bg-secondary text-primary border border-secondary hover:bg-secondary/80 transition-all text-sm font-bold shadow-md"
             data-testid="button-toggle-lang"
           >
             {t.nav.toggle}
@@ -80,7 +80,7 @@ export function Navbar() {
         <div className="lg:hidden flex items-center space-x-4 rtl:space-x-reverse">
           <button
             onClick={toggleLang}
-            className="px-3 py-1 rounded-full bg-secondary/20 text-secondary border border-secondary text-sm font-medium"
+            className="px-3 py-1 rounded-full bg-secondary text-primary border border-secondary text-sm font-bold shadow-md"
           >
             {t.nav.toggle}
           </button>
