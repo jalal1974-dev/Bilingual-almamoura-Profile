@@ -97,10 +97,10 @@ export function Hero() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Deep navy gradient overlay — strong enough for text legibility */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0D1B2E] via-[#0D1B2Ecc] to-[#0D1B2E99]" />
-      {/* Side vignettes */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0D1B2E66] via-transparent to-[#0D1B2E66]" />
+      {/* Overlay: dark only at bottom and top edges, mostly clear in the middle */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0D1B2E] via-[#0D1B2E55] to-[#0D1B2E33]" />
+      {/* Light side vignettes */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0D1B2E33] via-transparent to-[#0D1B2E33]" />
 
       {/* Sector label — bottom-left badge */}
       <div className="absolute bottom-16 left-8 z-20">
