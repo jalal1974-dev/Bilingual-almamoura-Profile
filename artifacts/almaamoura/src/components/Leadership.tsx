@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useLanguage } from './LanguageContext';
 import { translations } from '@/lib/translations';
 import captPhoto from '@assets/capt_mohammad_alkhashman.jpg';
+import mohammedPhoto from '@assets/mohammed_abdelrahman.jpg';
 
 export function Leadership() {
   const { lang } = useLanguage();
@@ -41,9 +42,11 @@ export function Leadership() {
                     className="w-24 h-24 rounded-full object-cover object-top border-4 border-secondary"
                   />
                 ) : (
-                  <div className="w-24 h-24 rounded-full bg-secondary flex items-center justify-center text-primary font-bold text-3xl">
-                    {member.initials}
-                  </div>
+                  <img
+                    src={mohammedPhoto}
+                    alt={member.name}
+                    className="w-24 h-24 rounded-full object-cover object-top border-4 border-secondary"
+                  />
                 )}
               </div>
               
