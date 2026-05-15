@@ -39,7 +39,8 @@ export function Leadership() {
                   <img
                     src={captPhoto}
                     alt={member.name}
-                    className="w-24 h-24 rounded-full object-cover object-top border-4 border-secondary"
+                    className="w-24 h-24 rounded-full object-cover border-4 border-secondary"
+                    style={{ objectPosition: 'center 15%' }}
                   />
                 ) : (
                   <img
