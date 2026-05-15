@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from './LanguageContext';
 import { translations } from '@/lib/translations';
+import captPhoto from '@assets/capt_mohammad_alkhashman.jpg';
 
 export function Leadership() {
   const { lang } = useLanguage();
@@ -33,9 +34,17 @@ export function Leadership() {
               className="flex flex-col md:flex-row gap-8 items-start bg-muted p-8 border border-border"
             >
               <div className="flex-shrink-0">
-                <div className="w-24 h-24 rounded-full bg-secondary flex items-center justify-center text-primary font-bold text-3xl">
-                  {member.initials}
-                </div>
+                {index === 0 ? (
+                  <img
+                    src={captPhoto}
+                    alt={member.name}
+                    className="w-24 h-24 rounded-full object-cover object-top border-4 border-secondary"
+                  />
+                ) : (
+                  <div className="w-24 h-24 rounded-full bg-secondary flex items-center justify-center text-primary font-bold text-3xl">
+                    {member.initials}
+                  </div>
+                )}
               </div>
               
               <div>
