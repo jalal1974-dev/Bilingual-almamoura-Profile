@@ -2,6 +2,7 @@ import { Router, type IRouter } from "express";
 import { db } from "@workspace/db";
 import { contactSubmissionsTable, insertContactSubmissionSchema } from "@workspace/db/schema";
 import { desc } from "drizzle-orm";
+import { requireAdminToken } from "./admin";
 
 const router: IRouter = Router();
 
@@ -25,7 +26,7 @@ router.post("/contact", async (req, res) => {
   }
 });
 
-router.get("/contact", async (_req, res) => {
+router.get("/contact", requireAdminToken, async (_req, res) => {
   try {
     const submissions = await db
       .select()

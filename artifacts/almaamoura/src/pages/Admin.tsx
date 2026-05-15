@@ -1,6 +1,9 @@
 import { useState, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Search, Download, RefreshCw, Inbox, ArrowUpDown, Phone, Mail, Calendar, MessageSquare, Tag } from "lucide-react";
+import {
+  Search, Download, RefreshCw, Inbox, ArrowUpDown,
+  Phone, Mail, Calendar, MessageSquare, Tag, Lock, Eye, EyeOff, LogOut
+} from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -18,8 +21,24 @@ type Submission = {
 type SortKey = "id" | "name" | "email" | "createdAt";
 type SortDir = "asc" | "desc";
 
-async function fetchSubmissions(): Promise<Submission[]> {
-  const res = await fetch("/api/contact");
+const TOKEN_KEY = "almaamoura_admin_token";
+
+async function login(password: string): Promise<string> {
+  const res = await fetch("/api/admin/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ password }),
+  });
+  if (!res.ok) throw new Error("Invalid password");
+  const data = await res.json();
+  return data.token as string;
+}
+
+async function fetchSubmissions(token: string): Promise<Submission[]> {
+  const res = await fetch("/api/contact", {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (res.status === 401) throw new Error("UNAUTHORIZED");
   if (!res.ok) throw new Error("Failed to fetch submissions");
   return res.json();
 }
@@ -59,15 +78,111 @@ function exportCSV(rows: Submission[]) {
   URL.revokeObjectURL(url);
 }
 
+function LoginScreen({ onLogin }: { onLogin: (token: string) => void }) {
+  const [password, setPassword] = useState("");
+  const [showPw, setShowPw] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+    try {
+      const token = await login(password);
+      localStorage.setItem(TOKEN_KEY, token);
+      onLogin(token);
+    } catch {
+      setError("Incorrect password. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-[#0D1B2E] flex items-center justify-center px-4">
+      <div className="w-full max-w-sm">
+        <div className="text-center mb-8">
+          <div className="w-12 h-12 bg-amber-500 flex items-center justify-center mx-auto mb-4">
+            <Lock className="w-6 h-6 text-[#0D1B2E]" />
+          </div>
+          <h1 className="text-white font-bold text-xl">Admin Access</h1>
+          <p className="text-white/40 text-sm mt-1">Al-Maamoura Advisory</p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="relative">
+            <Input
+              type={showPw ? "text" : "password"}
+              placeholder="Enter admin password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="bg-white/5 border-white/15 text-white placeholder:text-white/30 pr-10 focus-visible:ring-amber-500 focus-visible:border-amber-500"
+              autoFocus
+            />
+            <button
+              type="button"
+              onClick={() => setShowPw((v) => !v)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/60 transition-colors"
+            >
+              {showPw ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+            </button>
+          </div>
+
+          {error && (
+            <p className="text-red-400 text-sm text-center">{error}</p>
+          )}
+
+          <Button
+            type="submit"
+            disabled={loading || !password}
+            className="w-full bg-amber-500 hover:bg-amber-400 text-[#0D1B2E] font-semibold py-5"
+          >
+            {loading ? (
+              <span className="flex items-center gap-2">
+                <RefreshCw className="w-4 h-4 animate-spin" /> Verifying…
+              </span>
+            ) : "Sign In"}
+          </Button>
+        </form>
+
+        <p className="text-center text-white/20 text-xs mt-6">
+          Restricted access — authorised personnel only
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export default function Admin() {
+  const [token, setToken] = useState<string | null>(() =>
+    localStorage.getItem(TOKEN_KEY)
+  );
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState<Submission | null>(null);
   const [sort, setSort] = useState<{ key: SortKey; dir: SortDir }>({ key: "id", dir: "desc" });
 
-  const { data, isLoading, isError, refetch, isFetching } = useQuery({
-    queryKey: ["contact-submissions"],
-    queryFn: fetchSubmissions,
+  const handleLogout = () => {
+    localStorage.removeItem(TOKEN_KEY);
+    setToken(null);
+    setSelected(null);
+  };
+
+  const { data, isLoading, isError, refetch, isFetching, error } = useQuery({
+    queryKey: ["contact-submissions", token],
+    queryFn: () => fetchSubmissions(token!),
+    enabled: !!token,
+    retry: false,
   });
+
+  if ((error as Error)?.message === "UNAUTHORIZED") {
+    localStorage.removeItem(TOKEN_KEY);
+    setToken(null);
+  }
+
+  if (!token) {
+    return <LoginScreen onLogin={setToken} />;
+  }
 
   const toggleSort = (key: SortKey) => {
     setSort((prev) =>
@@ -139,19 +254,22 @@ export default function Admin() {
             <Download className="w-3.5 h-3.5" />
             Export CSV
           </Button>
-          <a
-            href="/"
-            className="ml-2 text-white/40 hover:text-white text-sm transition-colors"
-          >
-            ← Back to Site
+          <a href="/" className="text-white/40 hover:text-white text-sm transition-colors ml-1">
+            ← Site
           </a>
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-1.5 text-white/30 hover:text-red-400 text-sm transition-colors ml-1"
+          >
+            <LogOut className="w-3.5 h-3.5" />
+            Logout
+          </button>
         </div>
       </div>
 
       <div className="flex h-[calc(100vh-61px)]">
         {/* Left: Table */}
         <div className="flex-1 flex flex-col overflow-hidden">
-          {/* Search + Stats bar */}
           <div className="px-6 py-3 border-b border-white/10 flex items-center gap-4">
             <div className="relative flex-1 max-w-sm">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
@@ -167,7 +285,6 @@ export default function Admin() {
             </span>
           </div>
 
-          {/* Table */}
           <div className="flex-1 overflow-auto">
             {isLoading ? (
               <div className="flex items-center justify-center h-full text-white/40">
