@@ -143,15 +143,26 @@ export const translations = {
       ]
     },
     footer: {
+      badge: '10',
       companyName: 'AL-MAAMOURA ADVISORY & COMMERCIAL BROKERAGE CO.',
       tagline: 'Strategic Advisory. Commercial Brokerage. Built on 60 Years of Expertise.',
       location: 'Amman, Jordan',
+      locationLabel: 'Location',
+      phoneLabel: 'Phone',
+      emailLabel: 'Email',
       contactPerson: 'Mohammed Abdelrahman',
       form: {
-        name: 'Name',
-        email: 'Email',
+        name: 'Full Name',
+        email: 'Email Address',
+        phone: 'Phone Number',
+        subject: 'Subject',
         message: 'Message',
-        send: 'Send'
+        send: 'Send Message',
+        sending: 'Sending...',
+        successTitle: 'Message Sent',
+        successMessage: 'Thank you for reaching out. We will get back to you within 1–2 business days.',
+        sendAnother: 'Send Another Message',
+        errorMessage: 'Something went wrong. Please try again or contact us directly.'
       },
       copyright: '© 2025 Al-Maamoura Advisory & Commercial Brokerage Co. All rights reserved.'
     }
@@ -300,15 +311,26 @@ export const translations = {
       ]
     },
     footer: {
+      badge: '10',
       companyName: 'شركة المعمورة للاستشارات والوساطة التجارية',
       tagline: 'استشارات استراتيجية. وساطة تجارية. مبنية على أكثر من 60 عاماً من الخبرة.',
       location: 'عمان، الأردن',
+      locationLabel: 'الموقع',
+      phoneLabel: 'الهاتف',
+      emailLabel: 'البريد الإلكتروني',
       contactPerson: 'محمد عبدالرحمن',
       form: {
-        name: 'الاسم',
-        email: 'البريد الإلكتروني',
+        name: 'الاسم الكامل',
+        email: 'عنوان البريد الإلكتروني',
+        phone: 'رقم الهاتف',
+        subject: 'الموضوع',
         message: 'الرسالة',
-        send: 'إرسال'
+        send: 'إرسال الرسالة',
+        sending: 'جارٍ الإرسال...',
+        successTitle: 'تم إرسال الرسالة',
+        successMessage: 'شكراً لتواصلك معنا. سنرد عليك خلال يوم إلى يومين عمل.',
+        sendAnother: 'إرسال رسالة أخرى',
+        errorMessage: 'حدث خطأ ما. يرجى المحاولة مرة أخرى أو التواصل معنا مباشرة.'
       },
       copyright: '© 2025 شركة المعمورة للاستشارات والوساطة التجارية. جميع الحقوق محفوظة.'
     }
