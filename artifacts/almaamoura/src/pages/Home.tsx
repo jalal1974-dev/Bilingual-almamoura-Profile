@@ -10,6 +10,7 @@ import { Services } from '@/components/Services';
 import { Projects } from '@/components/Projects';
 import { WhyUs } from '@/components/WhyUs';
 import { Footer } from '@/components/Footer';
+import { FloatingContact } from '@/components/FloatingContact';
 import { LanguageProvider } from '@/components/LanguageContext';
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
     <LanguageProvider>
       <div className="min-h-screen bg-background text-foreground font-sans">
         <Navbar />
+        <FloatingContact />
         <main>
           <Hero />
           <About />

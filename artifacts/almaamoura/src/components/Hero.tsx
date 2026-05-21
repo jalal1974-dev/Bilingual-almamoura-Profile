@@ -97,34 +97,11 @@ export function Hero() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Overlay: dark only at bottom and top edges, mostly clear in the middle */}
+      {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#0D1B2E] via-[#0D1B2E55] to-[#0D1B2E33]" />
-      {/* Light side vignettes */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#0D1B2E33] via-transparent to-[#0D1B2E33]" />
 
-      {/* Sector label — bottom-left badge */}
-      <div className="absolute bottom-16 left-8 z-20">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={current + '-label'}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.5 }}
-            className="flex items-center gap-3"
-          >
-            <div className="w-8 h-px bg-secondary" />
-            <span
-              className="text-secondary text-sm font-semibold tracking-widest uppercase"
-              data-testid="hero-sector-label"
-            >
-              {lang === 'ar' ? slide.sectorAr : slide.sectorEn}
-            </span>
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      {/* Slide dots */}
+      {/* Slide dots — bottom right */}
       <div className="absolute bottom-16 right-8 z-20 flex items-center gap-2">
         {SLIDES.map((_, i) => (
           <button
@@ -164,18 +141,32 @@ export function Hero() {
           transition={{ duration: 0.8, ease: 'easeOut' }}
           className="max-w-4xl"
         >
-          <span
-            className="inline-block text-white tracking-widest uppercase text-sm mb-6 font-semibold"
-            style={{ textShadow: '0 1px 6px rgba(0,0,0,0.6)' }}
-          >
-            {t.hero.subheadline}
-          </span>
-
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-8">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
             {t.hero.headline}
           </h1>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+          {/* Sector label — animated with slides, sits right below headline */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={current + '-label-inline'}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.5 }}
+              className="flex items-center justify-center gap-3 mb-8"
+            >
+              <div className="w-8 h-px bg-secondary" />
+              <span
+                className="text-secondary text-sm font-semibold tracking-widest uppercase"
+                data-testid="hero-sector-label"
+              >
+                {lang === 'ar' ? slide.sectorAr : slide.sectorEn}
+              </span>
+              <div className="w-8 h-px bg-secondary" />
+            </motion.div>
+          </AnimatePresence>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
               onClick={() => scrollTo('#services')}
               data-testid="hero-cta-services"

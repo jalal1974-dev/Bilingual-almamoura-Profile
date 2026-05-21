@@ -41,17 +41,28 @@ export function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-primary shadow-lg py-2' : 'bg-transparent py-4'
+        isScrolled ? 'bg-primary shadow-lg py-2' : 'bg-black/40 backdrop-blur-sm py-4'
       }`}
     >
       <div className="container mx-auto px-4 md:px-8 flex justify-between items-center">
-        <div className="flex items-center space-x-3 rtl:space-x-reverse cursor-pointer" onClick={() => scrollTo('#hero')}>
-          <div className="bg-white p-1 rounded-sm w-12 h-12 flex items-center justify-center overflow-hidden">
+        <div className="flex items-center gap-3 cursor-pointer" onClick={() => scrollTo('#hero')}>
+          <div className="bg-white p-1 rounded-sm w-14 h-14 flex items-center justify-center overflow-hidden flex-shrink-0 shadow-md">
             <img src={logoPath} alt="Al-Maamoura Logo" className="w-full h-full object-contain" />
           </div>
-          <span className={`text-xl font-bold ${isScrolled ? 'text-secondary' : 'text-white'} hidden sm:block`}>
-            المعمورة | Al-Maamoura
-          </span>
+          <div className="flex flex-col leading-tight">
+            <span
+              className="text-white font-bold text-base sm:text-lg"
+              style={{ textShadow: '0 1px 8px rgba(0,0,0,0.8)' }}
+            >
+              Al-Maamoura
+            </span>
+            <span
+              className="text-secondary font-semibold text-xs sm:text-sm"
+              style={{ textShadow: '0 1px 8px rgba(0,0,0,0.8)' }}
+            >
+              المعمورة
+            </span>
+          </div>
         </div>
 
         {/* Desktop Nav */}
@@ -60,9 +71,7 @@ export function Navbar() {
             <button
               key={link.name}
               onClick={() => scrollTo(link.href)}
-              className={`text-sm hover:text-secondary transition-colors ${
-                isScrolled ? 'text-white' : 'text-white/90 hover:text-white'
-              }`}
+              className="text-sm text-white/90 hover:text-secondary transition-colors"
             >
               {link.name}
             </button>
