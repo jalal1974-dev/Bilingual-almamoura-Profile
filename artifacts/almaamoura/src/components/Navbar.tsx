@@ -46,7 +46,7 @@ export function Navbar() {
     >
       <div className="container mx-auto px-4 md:px-8 flex justify-between items-center">
         <div className="flex items-center gap-3 cursor-pointer" onClick={() => scrollTo('#hero')}>
-          <div className="bg-white p-1 rounded-sm w-14 h-14 flex items-center justify-center overflow-hidden flex-shrink-0 shadow-md">
+          <div className="bg-white p-1 rounded-sm w-20 h-20 flex items-center justify-center overflow-hidden flex-shrink-0 shadow-md">
             <img src={logoPath} alt="Al-Maamoura Logo" className="w-full h-full object-contain" />
           </div>
           <div className="flex flex-col leading-tight">

@@ -36,12 +36,14 @@ export function Leadership() {
             >
               <div className="flex-shrink-0">
                 {index === 0 ? (
-                  <img
-                    src={captPhoto}
-                    alt={member.name}
-                    className="w-24 h-24 rounded-full object-cover border-4 border-secondary"
-                    style={{ objectPosition: 'center 15%' }}
-                  />
+                  <div className="w-24 h-24 rounded-full border-4 border-secondary overflow-hidden flex-shrink-0">
+                    <img
+                      src={captPhoto}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                      style={{ objectPosition: 'center 10%', transform: 'scale(1.3)', transformOrigin: 'center 15%' }}
+                    />
+                  </div>
                 ) : (
                   <img
                     src={mohammedPhoto}
