@@ -45,11 +45,14 @@ export function Leadership() {
                     />
                   </div>
                 ) : (
-                  <img
-                    src={mohammedPhoto}
-                    alt={member.name}
-                    className="w-24 h-24 rounded-full object-cover object-top border-4 border-secondary"
-                  />
+                  <div className="w-24 h-24 rounded-full border-4 border-secondary overflow-hidden flex-shrink-0">
+                    <img
+                      src={mohammedPhoto}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                      style={{ objectPosition: 'center top', transform: 'scale(1.3)', transformOrigin: 'center 10%' }}
+                    />
+                  </div>
                 )}
               </div>
               
