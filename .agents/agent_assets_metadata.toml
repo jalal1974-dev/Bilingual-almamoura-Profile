@@ -1,0 +1,8 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "8_ilqjKYLsw5HW29SeLO0"
+uri = "file://almaamoura-apache-deploy.zip"
+type = "unspecified"
+title = "Al-Maamoura — Apache/cPanel Deploy Package"

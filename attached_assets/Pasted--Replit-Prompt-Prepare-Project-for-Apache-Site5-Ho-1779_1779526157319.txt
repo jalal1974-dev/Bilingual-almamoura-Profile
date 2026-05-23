@@ -1,0 +1,163 @@
+# ============================================
+# Replit Prompt - Prepare Project for Apache/Site5 Hosting
+# ============================================
+
+You are a senior deployment engineer.
+
+Your task is to fully prepare this Vite project for deployment on:
+- Apache Server
+- Site5 Hosting
+- Shared Hosting
+- cPanel Hosting
+
+The project MUST work as a static website without:
+- Node.js runtime
+- Vite dev server
+- PM2
+- Express
+- localhost dependencies
+
+# ============================================
+# STEP 1 — Detect Vite Config
+# ============================================
+
+Locate:
+- vite.config.js
+OR
+- vite.config.ts
+
+Modify defineConfig() and add:
+
+base: './'
+
+Example:
+
+export default defineConfig({
+  base: './',
+})
+
+This is REQUIRED to:
+- Fix blank white page after upload
+- Fix MIME type issues
+- Use relative asset paths
+- Make JS/CSS load correctly on Apache hosting
+
+# ============================================
+# STEP 2 — Fix Asset Paths
+# ============================================
+
+Ensure:
+- All assets use relative paths
+- No paths start with "/"
+- JS/CSS/images/fonts load correctly after upload
+
+# ============================================
+# STEP 3 — Prepare Static Build
+# ============================================
+
+Ensure the project builds as a fully static website.
+
+The generated:
+- index.html
+
+must work directly inside:
+- public_html
+- htdocs
+
+without Node.js.
+
+# ============================================
+# STEP 4 — SPA Routing Fix
+# ============================================
+
+If React Router / Vue Router / SPA routing is detected:
+
+Create:
+.htaccess
+
+with Apache rewrite rules:
+
+RewriteEngine On
+RewriteBase /
+
+RewriteRule ^index\.html$ - [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule . /index.html [L]
+
+This prevents:
+- 404 on refresh
+- route errors
+- Apache routing problems
+
+# ============================================
+# STEP 5 — Install & Build
+# ============================================
+
+Run automatically:
+
+npm install
+npm run build
+
+Ensure:
+- build succeeds
+- no fatal errors
+- dist folder generated successfully
+
+# ============================================
+# STEP 6 — Validation
+# ============================================
+
+Validate:
+- no MIME type errors
+- no 404 missing assets
+- no console errors
+- CSS loads correctly
+- JS loads correctly
+- images/fonts work
+- dist/index.html works standalone
+
+# ============================================
+# STEP 7 — Final Deployment Preparation
+# ============================================
+
+Prepare final deployable package:
+- dist folder ready for upload
+- optional ZIP archive for deployment
+
+Deployment target:
+- Apache
+- Site5
+- Shared Hosting
+- cPanel
+
+# ============================================
+# STEP 8 — Final Report
+# ============================================
+
+After completion provide:
+- modified files list
+- fixes applied
+- whether .htaccess was created
+- confirmation project is Apache-ready
+- confirmation project is Site5-ready
+- any important upload notes
+
+# ============================================
+# IMPORTANT
+# ============================================
+
+Do NOT stop after editing files.
+
+You MUST:
+1. Apply fixes
+2. Run build
+3. Verify output
+4. Prepare final deployable dist folder
+
+The final project must work immediately after uploading to:
+public_html
+
+without additional configuration.
