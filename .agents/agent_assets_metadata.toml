@@ -6,3 +6,9 @@ id = "8_ilqjKYLsw5HW29SeLO0"
 uri = "file://almaamoura-apache-deploy.zip"
 type = "unspecified"
 title = "Al-Maamoura — Apache/cPanel Deploy Package"
+
+[[outputs]]
+id = "rJZ3fyug5eFG9r4peHqAy"
+uri = "file://almaamoura-static.zip"
+type = "unspecified"
+title = "Al-Maamoura — Pure Static HTML Package (Apache/cPanel)"

@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Al-Maamoura Advisory & Commercial Brokerage Co.</title>
+<meta name="description" content="Strategic Advisory. Commercial Brokerage. Built on 60 Years of Expertise.">
+<meta property="og:title" content="Al-Maamoura Advisory & Commercial Brokerage Co.">
+<meta property="og:description" content="Strategic Advisory. Commercial Brokerage. Built on 60 Years of Expertise.">
+<link rel="icon" href="./assets/logo.jpeg" type="image/jpeg">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: '#0D1B2E',
+        secondary: '#C9A227',
+      }
+    }
+  }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: #fff; color: #1a1a1a; }
+  h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; }
+
+  /* Bilingual toggle */
+  html[dir="ltr"] .ar { display: none !important; }
+  html[dir="rtl"] .en { display: none !important; }
+
+  /* Navbar */
+  #navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 50; transition: all .3s; padding: 1rem 0; background: rgba(0,0,0,.4); backdrop-filter: blur(8px); }
+  #navbar.scrolled { background: #0D1B2E; padding: .5rem 0; box-shadow: 0 2px 16px rgba(0,0,0,.4); }
+
+  /* Hero */
+  #hero { position: relative; min-height: 100vh; overflow: hidden; display: flex; align-items: center; padding-top: 80px; }
+  .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.2s ease-in-out; }
+  .slide.active { opacity: 1; }
+  .slide img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* Progress bar */
+  #progressBar { height: 100%; background: #C9A227; width: 0; transition: none; }
+  #progressBar.running { animation: progress 5s linear forwards; }
+  @keyframes progress { from { width: 0 } to { width: 100% } }
+
+  /* Floating buttons */
+  #floatBtns { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 50; display: flex; flex-direction: column; gap: .75rem; align-items: flex-end; opacity: 0; pointer-events: none; transition: opacity .3s, transform .3s; transform: translateY(20px); }
+  #floatBtns.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
+  html[dir="rtl"] #floatBtns { right: auto; left: 1.5rem; align-items: flex-start; }
+
+  /* Mobile menu */
+  #mobileMenu { display: none; }
+  #mobileMenu.open { display: block; }
+
+  /* Sector label fade */
+  #sectorLabel { transition: opacity .5s; }
+
+  /* Card hover */
+  .value-card { transition: transform .2s, box-shadow .2s; }
+  .value-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,.12); }
+
+  /* Table alternating rows */
+  .proj-row:nth-child(even) { background: #f9f9f9; }
+
+  /* Services accordion */
+  .srv-body { display: none; }
+  .srv-body.open { display: block; }
+  .srv-toggle { cursor: pointer; user-select: none; }
+  .srv-arrow { transition: transform .2s; }
+  .srv-toggle.open .srv-arrow { transform: rotate(180deg); }
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav id="navbar">
+  <div class="max-w-7xl mx-auto px-4 md:px-8 flex justify-between items-center">
+    <!-- Logo + Name -->
+    <div class="flex items-center gap-3 cursor-pointer" onclick="scrollTo('#hero')">
+      <div class="bg-white rounded p-1 w-16 h-16 flex items-center justify-center overflow-hidden shadow-md flex-shrink-0">
+        <img src="./assets/logo.jpeg" alt="Al-Maamoura Logo" class="w-full h-full object-contain">
+      </div>
+      <div class="leading-tight">
+        <div class="text-white font-bold text-base sm:text-lg" style="text-shadow:0 1px 8px rgba(0,0,0,.8)">Al-Maamoura</div>
+        <div class="text-yellow-400 font-semibold text-xs sm:text-sm" style="text-shadow:0 1px 8px rgba(0,0,0,.8)">المعمورة</div>
+      </div>
+    </div>
+
+    <!-- Desktop nav -->
+    <div class="hidden lg:flex items-center gap-5">
+      <a onclick="scrollTo('#about')" class="text-sm text-white/90 hover:text-yellow-400 cursor-pointer transition-colors en">About</a>
+      <a onclick="scrollTo('#about')" class="text-sm text-white/90 hover:text-yellow-400 cursor-pointer transition-colors ar">من نحن</a>
+      <a onclick="scrollTo('#vision')" class="text-sm text-white/90 hover:text-yellow-400 cursor-pointer transition-colors en">Vision</a>
+      <a onclick="scrollTo('#vision')" class="text-sm text-white/90 hover:text-yellow-400 cursor-pointer transition-colors ar">الرؤية</a>
+      <a onclick="scrollTo('#leadership')" class="text-sm text-white/90 hover:text-yellow-400 cursor-pointer transition-colors en">Leadership</a>
+      <a onclick="scrollTo('#leadership')" class="text-sm text-white/90 hover:text-yellow-400 cursor-pointer transition-colors ar">القيادة</a>
+      <a onclick="scrollTo('#sectors')" class="text-sm text-white/90 hover:text-yellow-400 cursor-pointer transition-colors en">Sectors</a>
+      <a onclick="scrollTo('#sectors')" class="text-sm text-white/90 hover:text-yellow-400 cursor-pointer transition-colors ar">القطاعات</a>
+      <a onclick="scrollTo('#services')" class="text-sm text-white/90 hover:text-yellow-400 cursor-pointer transition-colors en">Services</a>
+      <a onclick="scrollTo('#services')" class="text-sm text-white/90 hover:text-yellow-400 cursor-pointer transition-colors ar">الخدمات</a>
+      <a onclick="scrollTo('#projects')" class="text-sm text-white/90 hover:text-yellow-400 cursor-pointer transition-colors en">Projects</a>
+      <a onclick="scrollTo('#projects')" class="text-sm text-white/90 hover:text-yellow-400 cursor-pointer transition-colors ar">المشاريع</a>
+      <a onclick="scrollTo('#contact')" class="text-sm text-white/90 hover:text-yellow-400 cursor-pointer transition-colors en">Contact</a>
+      <a onclick="scrollTo('#contact')" class="text-sm text-white/90 hover:text-yellow-400 cursor-pointer transition-colors ar">تواصل</a>
+      <button onclick="toggleLang()" class="px-4 py-1.5 rounded-full bg-yellow-500 text-[#0D1B2E] font-bold text-sm shadow hover:bg-yellow-400 transition-colors">
+        <span class="en">عربي</span><span class="ar">EN</span>
+      </button>
+    </div>
+
+    <!-- Mobile right side -->
+    <div class="lg:hidden flex items-center gap-3">
+      <button onclick="toggleLang()" class="px-3 py-1 rounded-full bg-yellow-500 text-[#0D1B2E] font-bold text-sm">
+        <span class="en">عربي</span><span class="ar">EN</span>
+      </button>
+      <button onclick="toggleMobileMenu()" class="text-white p-2">
+        <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        <svg id="closeIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="lg:hidden bg-[#0D1B2E] border-t border-white/10 shadow-xl">
+    <div class="flex flex-col py-3">
+      <a onclick="scrollTo('#about');toggleMobileMenu()" class="py-3 px-6 text-white hover:bg-white/5 hover:text-yellow-400 cursor-pointer en">About</a>
+      <a onclick="scrollTo('#about');toggleMobileMenu()" class="py-3 px-6 text-white hover:bg-white/5 hover:text-yellow-400 cursor-pointer ar">من نحن</a>
+      <a onclick="scrollTo('#vision');toggleMobileMenu()" class="py-3 px-6 text-white hover:bg-white/5 hover:text-yellow-400 cursor-pointer en">Vision</a>
+      <a onclick="scrollTo('#vision');toggleMobileMenu()" class="py-3 px-6 text-white hover:bg-white/5 hover:text-yellow-400 cursor-pointer ar">الرؤية</a>
+      <a onclick="scrollTo('#leadership');toggleMobileMenu()" class="py-3 px-6 text-white hover:bg-white/5 hover:text-yellow-400 cursor-pointer en">Leadership</a>
+      <a onclick="scrollTo('#leadership');toggleMobileMenu()" class="py-3 px-6 text-white hover:bg-white/5 hover:text-yellow-400 cursor-pointer ar">القيادة</a>
+      <a onclick="scrollTo('#sectors');toggleMobileMenu()" class="py-3 px-6 text-white hover:bg-white/5 hover:text-yellow-400 cursor-pointer en">Sectors</a>
+      <a onclick="scrollTo('#sectors');toggleMobileMenu()" class="py-3 px-6 text-white hover:bg-white/5 hover:text-yellow-400 cursor-pointer ar">القطاعات</a>
+      <a onclick="scrollTo('#services');toggleMobileMenu()" class="py-3 px-6 text-white hover:bg-white/5 hover:text-yellow-400 cursor-pointer en">Services</a>
+      <a onclick="scrollTo('#services');toggleMobileMenu()" class="py-3 px-6 text-white hover:bg-white/5 hover:text-yellow-400 cursor-pointer ar">الخدمات</a>
+      <a onclick="scrollTo('#projects');toggleMobileMenu()" class="py-3 px-6 text-white hover:bg-white/5 hover:text-yellow-400 cursor-pointer en">Projects</a>
+      <a onclick="scrollTo('#projects');toggleMobileMenu()" class="py-3 px-6 text-white hover:bg-white/5 hover:text-yellow-400 cursor-pointer ar">المشاريع</a>
+      <a onclick="scrollTo('#contact');toggleMobileMenu()" class="py-3 px-6 text-white hover:bg-white/5 hover:text-yellow-400 cursor-pointer en">Contact</a>
+      <a onclick="scrollTo('#contact');toggleMobileMenu()" class="py-3 px-6 text-white hover:bg-white/5 hover:text-yellow-400 cursor-pointer ar">تواصل</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <!-- Slides -->
+  <div id="slides">
+    <div class="slide active"><img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=80&fit=crop" alt="Aviation"></div>
+    <div class="slide"><img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1920&q=80&fit=crop" alt="Real Estate"></div>
+    <div class="slide"><img src="https://images.unsplash.com/photo-1455587734955-081b22074882?w=1920&q=80&fit=crop" alt="Hospitality"></div>
+    <div class="slide"><img src="https://images.unsplash.com/photo-1551076805-e1869033e561?w=1920&q=80&fit=crop" alt="Healthcare"></div>
+    <div class="slide"><img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1920&q=80&fit=crop" alt="Energy"></div>
+    <div class="slide"><img src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=1920&q=80&fit=crop" alt="Oil Gas"></div>
+    <div class="slide"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80&fit=crop" alt="Finance"></div>
+    <div class="slide"><img src="https://images.unsplash.com/photo-1565043666747-69f6646db940?w=1920&q=80&fit=crop" alt="Industrial"></div>
+  </div>
+
+  <!-- Overlays -->
+  <div style="position:absolute;inset:0;background:linear-gradient(to top,#0D1B2E,rgba(13,27,46,.35),rgba(13,27,46,.2))"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(13,27,46,.2),transparent,rgba(13,27,46,.2))"></div>
+
+  <!-- Prev / Next -->
+  <button onclick="prevSlide()" style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);z-index:20" class="w-10 h-10 rounded-full bg-white/10 hover:bg-yellow-500/80 border border-white/20 flex items-center justify-center text-white transition-all">
+    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg>
+  </button>
+  <button onclick="nextSlide()" style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);z-index:20" class="w-10 h-10 rounded-full bg-white/10 hover:bg-yellow-500/80 border border-white/20 flex items-center justify-center text-white transition-all">
+    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9,18 15,12 9,6"/></svg>
+  </button>
+
+  <!-- Slide dots -->
+  <div id="dots" style="position:absolute;bottom:4rem;right:2rem;z-index:20;display:flex;gap:.5rem;align-items:center"></div>
+
+  <!-- Main content -->
+  <div style="position:relative;z-index:10;width:100%;text-align:center;padding:0 1rem">
+    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 en">
+      Strategic Advisory.<br>Commercial Brokerage.<br>Built on 60 Years of Expertise.
+    </h1>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 ar" style="font-family:'Playfair Display',serif">
+      استشارات استراتيجية. وساطة تجارية.<br>مبنية على أكثر من 60 عاماً من الخبرة.
+    </h1>
+
+    <!-- Sector label -->
+    <div id="sectorLabel" class="flex items-center justify-center gap-3 mb-8">
+      <div style="width:2rem;height:1px;background:#C9A227"></div>
+      <span id="sectorText" class="text-sm font-semibold tracking-widest uppercase" style="color:#C9A227">AVIATION &amp; AEROSPACE</span>
+      <div style="width:2rem;height:1px;background:#C9A227"></div>
+    </div>
+
+    <!-- CTAs -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <button onclick="scrollTo('#services')" class="bg-yellow-500 text-[#0D1B2E] px-8 py-4 font-semibold hover:bg-yellow-400 transition-all flex items-center gap-2 w-full sm:w-auto justify-center">
+        <span class="en">Our Services →</span>
+        <span class="ar">← خدماتنا</span>
+      </button>
+      <button onclick="scrollTo('#leadership')" class="border border-white/40 text-white px-8 py-4 font-medium hover:bg-white/10 transition-all w-full sm:w-auto justify-center">
+        <span class="en">Meet Our Team</span>
+        <span class="ar">فريق القيادة</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Progress bar -->
+  <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:rgba(255,255,255,.1)">
+    <div id="progressBar"></div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about" class="py-24 bg-white">
+  <div class="max-w-5xl mx-auto px-4 md:px-8">
+    <div class="flex items-center gap-4 mb-8">
+      <span class="text-yellow-500 font-bold text-lg">01</span>
+      <div style="height:1px;background:#e5e7eb;flex:1"></div>
+    </div>
+    <h2 class="text-3xl md:text-5xl font-bold text-[#0D1B2E] mb-8 en">About Us</h2>
+    <h2 class="text-3xl md:text-5xl font-bold text-[#0D1B2E] mb-8 ar">من نحن</h2>
+    <p class="text-lg text-gray-600 leading-relaxed mb-8 en">
+      Al-Maamoura Advisory &amp; Commercial Brokerage Co. is a professional business consultancy and commercial advisory firm delivering strategic solutions across business development, project finance, commercial brokerage, investment advisory, and project management. Established through the combined expertise of highly experienced professionals with over 60 years of cumulative experience, Al-Maamoura provides practical, innovative, and results-driven solutions designed for regional and international markets. We support clients across the Middle East, GCC, Europe, Africa, and Asia through integrated advisory services enabling sustainable growth, operational excellence, financial optimization, and strategic expansion.
+    </p>
+    <p class="text-lg text-gray-600 leading-relaxed mb-8 ar">
+      شركة المعمورة للاستشارات والوساطة التجارية هي شركة استشارات أعمال مهنية وشركة استشارية تجارية، تقدم حلولاً استراتيجية في مجالات تطوير الأعمال وتمويل المشاريع والوساطة التجارية والاستشارات الاستثمارية وإدارة المشاريع. تأسست الشركة من خلال الخبرة المشتركة لمهنيين متمرسين ذوي أكثر من 60 عاماً من الخبرة التراكمية، وتقدم المعمورة حلولاً عملية ومبتكرة وموجهة نحو النتائج مصممة للأسواق الإقليمية والدولية.
+    </p>
+    <p class="text-yellow-600 font-medium italic mb-12 en">"We do not claim perfection — we claim teamwork, commitment, and results."</p>
+    <p class="text-yellow-600 font-medium italic mb-12 ar">"نحن لا ندّعي الكمال — نحن ندّعي العمل الجماعي والالتزام والنتائج."</p>
+    <div class="grid grid-cols-3 gap-8 text-center">
+      <div>
+        <div class="text-3xl md:text-4xl font-bold text-[#0D1B2E] mb-2 en">60+ Years</div>
+        <div class="text-3xl md:text-4xl font-bold text-[#0D1B2E] mb-2 ar">60+ عاماً</div>
+        <div class="text-sm text-gray-500 en">Cumulative Experience</div>
+        <div class="text-sm text-gray-500 ar">خبرة تراكمية</div>
+      </div>
+      <div>
+        <div class="text-3xl md:text-4xl font-bold text-[#0D1B2E] mb-2 en">5 Regions</div>
+        <div class="text-3xl md:text-4xl font-bold text-[#0D1B2E] mb-2 ar">5 مناطق</div>
+        <div class="text-sm text-gray-500 en">Global Reach</div>
+        <div class="text-sm text-gray-500 ar">نطاق عالمي</div>
+      </div>
+      <div>
+        <div class="text-3xl md:text-4xl font-bold text-[#0D1B2E] mb-2 en">10+ Sectors</div>
+        <div class="text-3xl md:text-4xl font-bold text-[#0D1B2E] mb-2 ar">10+ قطاعات</div>
+        <div class="text-sm text-gray-500 en">Industry Coverage</div>
+        <div class="text-sm text-gray-500 ar">تغطية صناعية</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VISION / MISSION ===== -->
+<section id="vision" style="background:#0D1B2E" class="py-24">
+  <div class="max-w-5xl mx-auto px-4 md:px-8">
+    <div class="flex items-center gap-4 mb-8">
+      <span class="text-yellow-500 font-bold text-lg">02</span>
+      <div style="height:1px;background:rgba(255,255,255,.15);flex:1"></div>
+    </div>
+    <div class="grid md:grid-cols-2 gap-12">
+      <div>
+        <div class="flex items-center gap-3 mb-6">
+          <div style="width:3rem;height:2px;background:#C9A227"></div>
+          <h3 class="text-yellow-500 font-bold tracking-widest uppercase text-sm en">Vision</h3>
+          <h3 class="text-yellow-500 font-bold tracking-widest uppercase text-sm ar">الرؤية</h3>
+        </div>
+        <p class="text-white/80 text-lg leading-relaxed en">To become the leading regional advisory and commercial brokerage firm known for delivering innovative business solutions, strategic partnerships, and sustainable investment opportunities across industries.</p>
+        <p class="text-white/80 text-lg leading-relaxed ar">أن تكون الشركة الاستشارية والوساطة التجارية الإقليمية الرائدة المعروفة بتقديم حلول أعمال مبتكرة وشراكات استراتيجية وفرص استثمارية مستدامة عبر مختلف الصناعات.</p>
+      </div>
+      <div>
+        <div class="flex items-center gap-3 mb-6">
+          <div style="width:3rem;height:2px;background:#C9A227"></div>
+          <h3 class="text-yellow-500 font-bold tracking-widest uppercase text-sm en">Mission</h3>
+          <h3 class="text-yellow-500 font-bold tracking-widest uppercase text-sm ar">الرسالة</h3>
+        </div>
+        <p class="text-white/80 text-lg leading-relaxed en">Empowering businesses and investors through professional advisory, structured financial solutions, project development expertise, and commercial brokerage services that create long-term value and sustainable growth.</p>
+        <p class="text-white/80 text-lg leading-relaxed ar">تمكين الشركات والمستثمرين من خلال الاستشارات المهنية والحلول المالية المنظمة وخبرات تطوير المشاريع والخدمات الاستشارية التجارية التي تخلق قيمة طويلة الأجل ونمواً مستداماً.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== VALUES ===== -->
+<section id="values" class="py-24 bg-gray-50">
+  <div class="max-w-5xl mx-auto px-4 md:px-8">
+    <div class="flex items-center gap-4 mb-8">
+      <span class="text-yellow-500 font-bold text-lg">03</span>
+      <div style="height:1px;background:#e5e7eb;flex:1"></div>
+    </div>
+    <h2 class="text-3xl md:text-5xl font-bold text-[#0D1B2E] mb-12 en">Core Values</h2>
+    <h2 class="text-3xl md:text-5xl font-bold text-[#0D1B2E] mb-12 ar">القيم الجوهرية</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- EN values -->
+      <div class="value-card bg-white p-6 border border-gray-200 en">
+        <div style="width:2rem;height:2px;background:#C9A227" class="mb-4"></div>
+        <h3 class="text-lg font-bold text-[#0D1B2E] mb-3">Integrity &amp; Transparency</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">A steadfast commitment to ethical conduct and open, honest communication in every client interaction.</p>
+      </div>
+      <div class="value-card bg-white p-6 border border-gray-200 en">
+        <div style="width:2rem;height:2px;background:#C9A227" class="mb-4"></div>
+        <h3 class="text-lg font-bold text-[#0D1B2E] mb-3">Professional Excellence</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">Delivering the highest standards of expertise, quality, and professionalism across all our services.</p>
+      </div>
+      <div class="value-card bg-white p-6 border border-gray-200 en">
+        <div style="width:2rem;height:2px;background:#C9A227" class="mb-4"></div>
+        <h3 class="text-lg font-bold text-[#0D1B2E] mb-3">Client Commitment</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">Placing client success at the heart of every decision, recommendation, and solution we deliver.</p>
+      </div>
+      <div class="value-card bg-white p-6 border border-gray-200 en">
+        <div style="width:2rem;height:2px;background:#C9A227" class="mb-4"></div>
+        <h3 class="text-lg font-bold text-[#0D1B2E] mb-3">Strategic Partnerships</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">Building lasting alliances that create mutual value and open new horizons for all parties.</p>
+      </div>
+      <div class="value-card bg-white p-6 border border-gray-200 en">
+        <div style="width:2rem;height:2px;background:#C9A227" class="mb-4"></div>
+        <h3 class="text-lg font-bold text-[#0D1B2E] mb-3">Innovation &amp; Sustainability</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">Embracing creative thinking and responsible practices to deliver lasting, long-term outcomes.</p>
+      </div>
+      <div class="value-card bg-white p-6 border border-gray-200 en">
+        <div style="width:2rem;height:2px;background:#C9A227" class="mb-4"></div>
+        <h3 class="text-lg font-bold text-[#0D1B2E] mb-3">Reliability &amp; Accountability</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">Fulfilling every commitment with consistency, personal ownership, and measurable results.</p>
+      </div>
+      <!-- AR values -->
+      <div class="value-card bg-white p-6 border border-gray-200 ar">
+        <div style="width:2rem;height:2px;background:#C9A227" class="mb-4"></div>
+        <h3 class="text-lg font-bold text-[#0D1B2E] mb-3">النزاهة والشفافية</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">التزام راسخ بالسلوك الأخلاقي والتواصل المفتوح والصادق في كل تعامل مع العملاء.</p>
+      </div>
+      <div class="value-card bg-white p-6 border border-gray-200 ar">
+        <div style="width:2rem;height:2px;background:#C9A227" class="mb-4"></div>
+        <h3 class="text-lg font-bold text-[#0D1B2E] mb-3">التميز المهني</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">تقديم أعلى معايير الخبرة والجودة والاحترافية في جميع خدماتنا.</p>
+      </div>
+      <div class="value-card bg-white p-6 border border-gray-200 ar">
+        <div style="width:2rem;height:2px;background:#C9A227" class="mb-4"></div>
+        <h3 class="text-lg font-bold text-[#0D1B2E] mb-3">الالتزام بالعميل</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">وضع نجاح العميل في قلب كل قرار وتوصية وحل نقدمه.</p>
+      </div>
+      <div class="value-card bg-white p-6 border border-gray-200 ar">
+        <div style="width:2rem;height:2px;background:#C9A227" class="mb-4"></div>
+        <h3 class="text-lg font-bold text-[#0D1B2E] mb-3">الشراكات الاستراتيجية</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">بناء تحالفات دائمة تخلق قيمة متبادلة وتفتح آفاقاً جديدة لجميع الأطراف.</p>
+      </div>
+      <div class="value-card bg-white p-6 border border-gray-200 ar">
+        <div style="width:2rem;height:2px;background:#C9A227" class="mb-4"></div>
+        <h3 class="text-lg font-bold text-[#0D1B2E] mb-3">الابتكار والاستدامة</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">تبني التفكير الإبداعي والممارسات المسؤولة لتحقيق نتائج دائمة وطويلة الأمد.</p>
+      </div>
+      <div class="value-card bg-white p-6 border border-gray-200 ar">
+        <div style="width:2rem;height:2px;background:#C9A227" class="mb-4"></div>
+        <h3 class="text-lg font-bold text-[#0D1B2E] mb-3">الموثوقية والمساءلة</h3>
+        <p class="text-gray-600 text-sm leading-relaxed">الوفاء بكل التزام بالاتساق والملكية الشخصية والنتائج القابلة للقياس.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LEADERSHIP ===== -->
+<section id="leadership" class="py-24 bg-white">
+  <div class="max-w-5xl mx-auto px-4 md:px-8">
+    <div class="flex items-center gap-4 mb-8">
+      <span class="text-yellow-500 font-bold text-lg">04</span>
+      <div style="height:1px;background:#e5e7eb;flex:1"></div>
+    </div>
+    <h2 class="text-3xl md:text-5xl font-bold text-[#0D1B2E] mb-4 en">Leadership</h2>
+    <h2 class="text-3xl md:text-5xl font-bold text-[#0D1B2E] mb-4 ar">فريق القيادة</h2>
+    <p class="text-lg text-gray-500 mb-12 en">Al-Maamoura is led by seasoned professionals whose combined expertise spans more than 60 years across aviation, business development, financial advisory, and international trade.</p>
+    <p class="text-lg text-gray-500 mb-12 ar">تقود المعمورة قيادة متمرسة بخبرة تتجاوز 60 عاماً تراكمية في قطاعات الطيران وتطوير الأعمال والاستشارات المالية والتجارة الدولية.</p>
+
+    <div class="space-y-8">
+      <!-- Capt. Alkhashman -->
+      <div class="flex flex-col md:flex-row gap-8 items-start bg-gray-50 p-8 border border-gray-200">
+        <div style="width:96px;height:96px;border-radius:50%;border:4px solid #C9A227;overflow:hidden;flex-shrink:0">
+          <img src="./assets/capt.jpg" alt="Capt. Mohammad Alkhashman" style="width:100%;height:100%;object-fit:cover;object-position:center 10%;transform:scale(1.3);transform-origin:center 15%">
+        </div>
+        <div>
+          <div class="text-yellow-600 font-bold text-sm tracking-widest uppercase mb-2 en">CHAIRMAN</div>
+          <div class="text-yellow-600 font-bold text-sm tracking-widest uppercase mb-2 ar">رئيس مجلس الإدارة</div>
+          <h3 class="text-2xl font-bold text-[#0D1B2E] mb-4 en">Capt. Mohammad Alkhashman</h3>
+          <h3 class="text-2xl font-bold text-[#0D1B2E] mb-4 ar">الكابتن محمد الخشمان</h3>
+          <p class="text-gray-600 leading-relaxed text-lg en">With more than 30 years of experience in the aviation industry, serving in the Royal Jordanian Air Force, Capt. Mohammad Alkhashman established his own aviation company — the first privately owned Jordanian airline operating in Jordan and the Middle East.</p>
+          <p class="text-gray-600 leading-relaxed text-lg ar">يمتلك أكثر من 30 عاماً من الخبرة في صناعة الطيران، خدم خلالها في سلاح الجو الملكي الأردني. أسس الكابتن محمد الخشمان شركته الخاصة لتكون أول شركة طيران خاصة أردنية تعمل في الأردن والشرق الأوسط.</p>
+        </div>
+      </div>
+
+      <!-- Mohammed Abdelrahman -->
+      <div class="flex flex-col md:flex-row gap-8 items-start bg-gray-50 p-8 border border-gray-200">
+        <div style="width:96px;height:96px;border-radius:50%;border:4px solid #C9A227;overflow:hidden;flex-shrink:0">
+          <img src="./assets/mohammed.jpg" alt="Mohammed Abdelrahman" style="width:100%;height:100%;object-fit:cover;object-position:center top;transform:scale(1.3);transform-origin:center 10%">
+        </div>
+        <div>
+          <div class="text-yellow-600 font-bold text-sm tracking-widest uppercase mb-2 en">MANAGING PARTNER</div>
+          <div class="text-yellow-600 font-bold text-sm tracking-widest uppercase mb-2 ar">الشريك المدير</div>
+          <h3 class="text-2xl font-bold text-[#0D1B2E] mb-4 en">Mohammed Abdelrahman</h3>
+          <h3 class="text-2xl font-bold text-[#0D1B2E] mb-4 ar">محمد عبدالرحمن</h3>
+          <p class="text-gray-600 leading-relaxed text-lg en">With over 30 years of experience, Mohammed Abdelrahman is a strategic consultant specializing in business development, financial advisory, and international trade across MENA and global markets, recognized for driving growth through innovative restructuring and high-value commercial partnerships.</p>
+          <p class="text-gray-600 leading-relaxed text-lg ar">يتمتع بخبرة تتجاوز 30 عاماً كمستشار استراتيجي متخصص في تطوير الأعمال والاستشارات المالية والتجارة الدولية عبر أسواق منطقة الشرق الأوسط وشمال أفريقيا والأسواق العالمية.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== METHODOLOGY ===== -->
+<section id="methodology" style="background:#0D1B2E" class="py-24">
+  <div class="max-w-5xl mx-auto px-4 md:px-8">
+    <div class="flex items-center gap-4 mb-8">
+      <span class="text-yellow-500 font-bold text-lg">05</span>
+      <div style="height:1px;background:rgba(255,255,255,.15);flex:1"></div>
+    </div>
+    <h2 class="text-3xl md:text-5xl font-bold text-white mb-12 en">Consulting Methodology</h2>
+    <h2 class="text-3xl md:text-5xl font-bold text-white mb-12 ar">منهجية الاستشارات</h2>
+    <div class="grid md:grid-cols-5 gap-6">
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-full bg-yellow-500 text-[#0D1B2E] font-bold text-xl flex items-center justify-center mx-auto mb-4">1</div>
+        <h4 class="text-white font-bold mb-2 en">Assessment &amp; Discovery</h4>
+        <h4 class="text-white font-bold mb-2 ar">التقييم والاكتشاف</h4>
+        <p class="text-white/60 text-sm en">Understanding client needs, context, and objectives.</p>
+        <p class="text-white/60 text-sm ar">فهم احتياجات العميل والسياق والأهداف.</p>
+      </div>
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-full bg-yellow-500 text-[#0D1B2E] font-bold text-xl flex items-center justify-center mx-auto mb-4">2</div>
+        <h4 class="text-white font-bold mb-2 en">Strategic Planning</h4>
+        <h4 class="text-white font-bold mb-2 ar">التخطيط الاستراتيجي</h4>
+        <p class="text-white/60 text-sm en">Developing a tailored roadmap aligned with goals.</p>
+        <p class="text-white/60 text-sm ar">تطوير خارطة طريق مصممة وفق الأهداف.</p>
+      </div>
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-full bg-yellow-500 text-[#0D1B2E] font-bold text-xl flex items-center justify-center mx-auto mb-4">3</div>
+        <h4 class="text-white font-bold mb-2 en">Solution Design</h4>
+        <h4 class="text-white font-bold mb-2 ar">تصميم الحلول</h4>
+        <p class="text-white/60 text-sm en">Crafting precise, practical, and innovative solutions.</p>
+        <p class="text-white/60 text-sm ar">صياغة حلول دقيقة وعملية ومبتكرة.</p>
+      </div>
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-full bg-yellow-500 text-[#0D1B2E] font-bold text-xl flex items-center justify-center mx-auto mb-4">4</div>
+        <h4 class="text-white font-bold mb-2 en">Implementation Support</h4>
+        <h4 class="text-white font-bold mb-2 ar">دعم التنفيذ</h4>
+        <p class="text-white/60 text-sm en">Guiding execution with hands-on advisory.</p>
+        <p class="text-white/60 text-sm ar">توجيه التنفيذ باستشارة مباشرة.</p>
+      </div>
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-full bg-yellow-500 text-[#0D1B2E] font-bold text-xl flex items-center justify-center mx-auto mb-4">5</div>
+        <h4 class="text-white font-bold mb-2 en">Monitoring &amp; Evaluation</h4>
+        <h4 class="text-white font-bold mb-2 ar">الرقابة والتقييم</h4>
+        <p class="text-white/60 text-sm en">Measuring outcomes and refining for sustained results.</p>
+        <p class="text-white/60 text-sm ar">قياس النتائج وتحسينها لاستدامة الأداء.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTORS ===== -->
+<section id="sectors" class="py-24 bg-gray-50">
+  <div class="max-w-5xl mx-auto px-4 md:px-8">
+    <div class="flex items-center gap-4 mb-8">
+      <span class="text-yellow-500 font-bold text-lg">06</span>
+      <div style="height:1px;background:#e5e7eb;flex:1"></div>
+    </div>
+    <h2 class="text-3xl md:text-5xl font-bold text-[#0D1B2E] mb-12 en">Sectors We Serve</h2>
+    <h2 class="text-3xl md:text-5xl font-bold text-[#0D1B2E] mb-12 ar">القطاعات التي نخدمها</h2>
+    <div class="flex flex-wrap gap-3">
+      <span class="px-5 py-3 border-2 border-[#0D1B2E] text-[#0D1B2E] font-semibold text-sm hover:bg-[#0D1B2E] hover:text-white transition-colors cursor-default en">Aviation &amp; Aerospace</span>
+      <span class="px-5 py-3 border-2 border-[#0D1B2E] text-[#0D1B2E] font-semibold text-sm hover:bg-[#0D1B2E] hover:text-white transition-colors cursor-default en">Real Estate Development</span>
+      <span class="px-5 py-3 border-2 border-[#0D1B2E] text-[#0D1B2E] font-semibold text-sm hover:bg-[#0D1B2E] hover:text-white transition-colors cursor-default en">Hospitality &amp; Tourism</span>
+      <span class="px-5 py-3 border-2 border-[#0D1B2E] text-[#0D1B2E] font-semibold text-sm hover:bg-[#0D1B2E] hover:text-white transition-colors cursor-default en">Healthcare</span>
+      <span class="px-5 py-3 border-2 border-[#0D1B2E] text-[#0D1B2E] font-semibold text-sm hover:bg-[#0D1B2E] hover:text-white transition-colors cursor-default en">Education</span>
+      <span class="px-5 py-3 border-2 border-[#0D1B2E] text-[#0D1B2E] font-semibold text-sm hover:bg-[#0D1B2E] hover:text-white transition-colors cursor-default en">Renewable Energy</span>
+      <span class="px-5 py-3 border-2 border-[#0D1B2E] text-[#0D1B2E] font-semibold text-sm hover:bg-[#0D1B2E] hover:text-white transition-colors cursor-default en">Industrial Manufacturing</span>
+      <span class="px-5 py-3 border-2 border-[#0D1B2E] text-[#0D1B2E] font-semibold text-sm hover:bg-[#0D1B2E] hover:text-white transition-colors cursor-default en">Commercial Trade</span>
+      <span class="px-5 py-3 border-2 border-[#0D1B2E] text-[#0D1B2E] font-semibold text-sm hover:bg-[#0D1B2E] hover:text-white transition-colors cursor-default en">Financial Services</span>
+      <span class="px-5 py-3 border-2 border-[#0D1B2E] text-[#0D1B2E] font-semibold text-sm hover:bg-[#0D1B2E] hover:text-white transition-colors cursor-default en">Oil &amp; Gas Services</span>
+      <span class="px-5 py-3 border-2 border-[#0D1B2E] text-[#0D1B2E] font-semibold text-sm hover:bg-[#0D1B2E] hover:text-white transition-colors cursor-default ar">الطيران والفضاء</span>
+      <span class="px-5 py-3 border-2 border-[#0D1B2E] text-[#0D1B2E] font-semibold text-sm hover:bg-[#0D1B2E] hover:text-white transition-colors cursor-default ar">التطوير العقاري</span>
+      <span class="px-5 py-3 border-2 border-[#0D1B2E] text-[#0D1B2E] font-semibold text-sm hover:bg-[#0D1B2E] hover:text-white transition-colors cursor-default ar">الضيافة والسياحة</span>
+      <span class="px-5 py-3 border-2 border-[#0D1B2E] text-[#0D1B2E] font-semibold text-sm hover:bg-[#0D1B2E] hover:text-white transition-colors cursor-default ar">الرعاية الصحية</span>
+      <span class="px-5 py-3 border-2 border-[#0D1B2E] text-[#0D1B2E] font-semibold text-sm hover:bg-[#0D1B2E] hover:text-white transition-colors cursor-default ar">التعليم</span>
+      <span class="px-5 py-3 border-2 border-[#0D1B2E] text-[#0D1B2E] font-semibold text-sm hover:bg-[#0D1B2E] hover:text-white transition-colors cursor-default ar">الطاقة المتجددة</span>
+      <span class="px-5 py-3 border-2 border-[#0D1B2E] text-[#0D1B2E] font-semibold text-sm hover:bg-[#0D1B2E] hover:text-white transition-colors cursor-default ar">التصنيع الصناعي</span>
+      <span class="px-5 py-3 border-2 border-[#0D1B2E] text-[#0D1B2E] font-semibold text-sm hover:bg-[#0D1B2E] hover:text-white transition-colors cursor-default ar">التجارة</span>
+      <span class="px-5 py-3 border-2 border-[#0D1B2E] text-[#0D1B2E] font-semibold text-sm hover:bg-[#0D1B2E] hover:text-white transition-colors cursor-default ar">الخدمات المالية</span>
+      <span class="px-5 py-3 border-2 border-[#0D1B2E] text-[#0D1B2E] font-semibold text-sm hover:bg-[#0D1B2E] hover:text-white transition-colors cursor-default ar">خدمات النفط والغاز</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section id="services" class="py-24 bg-white">
+  <div class="max-w-5xl mx-auto px-4 md:px-8">
+    <div class="flex items-center gap-4 mb-8">
+      <span class="text-yellow-500 font-bold text-lg">07</span>
+      <div style="height:1px;background:#e5e7eb;flex:1"></div>
+    </div>
+    <h2 class="text-3xl md:text-5xl font-bold text-[#0D1B2E] mb-12 en">Our Services</h2>
+    <h2 class="text-3xl md:text-5xl font-bold text-[#0D1B2E] mb-12 ar">خدماتنا</h2>
+    <div class="space-y-3">
+
+      <div class="border border-gray-200">
+        <div class="srv-toggle flex justify-between items-center p-5 bg-gray-50" onclick="toggleSrv(this)">
+          <h3 class="font-bold text-[#0D1B2E] en">Business &amp; Commercial Consultancy</h3>
+          <h3 class="font-bold text-[#0D1B2E] ar">استشارات الأعمال والاستشارات التجارية</h3>
+          <svg class="srv-arrow w-5 h-5 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg>
+        </div>
+        <div class="srv-body p-5 grid md:grid-cols-2 gap-2 border-t border-gray-100">
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Business Development Strategy</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Corporate Restructuring &amp; Organizational Development</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Feasibility Studies</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Market Research &amp; Analysis</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Financial &amp; Technical Advisory</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Corporate Governance</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Training &amp; Capacity Building</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">PMO Development</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Operational Performance Improvement</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Commercial Expansion Support</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">استراتيجية تطوير الأعمال</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">إعادة الهيكلة المؤسسية والتطوير التنظيمي</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">دراسات الجدوى</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">أبحاث وتحليل السوق</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">الاستشارات المالية والتقنية</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">الحوكمة المؤسسية</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">التدريب وبناء القدرات</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">تطوير مكتب إدارة المشاريع</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">تحسين الأداء التشغيلي</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">دعم التوسع التجاري</span></div>
+        </div>
+      </div>
+
+      <div class="border border-gray-200">
+        <div class="srv-toggle flex justify-between items-center p-5 bg-gray-50" onclick="toggleSrv(this)">
+          <h3 class="font-bold text-[#0D1B2E] en">Structured Finance &amp; Investment Advisory</h3>
+          <h3 class="font-bold text-[#0D1B2E] ar">التمويل المنظم والاستشارات الاستثمارية</h3>
+          <svg class="srv-arrow w-5 h-5 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg>
+        </div>
+        <div class="srv-body p-5 grid md:grid-cols-2 gap-2 border-t border-gray-100">
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Investment Structuring</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Capital Raising Support</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Investor Relations Support</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Commercial &amp; Financial Advisory</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">International Investment Opportunities</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Trade Finance Solutions</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Advisory &amp; Due Diligence</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">هيكلة الاستثمار</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">دعم جمع رأس المال</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">دعم علاقات المستثمرين</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">الاستشارات التجارية والمالية</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">فرص الاستثمار الدولي</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">حلول تمويل التجارة</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">الاستشارات والتحقق من الجدارة</span></div>
+        </div>
+      </div>
+
+      <div class="border border-gray-200">
+        <div class="srv-toggle flex justify-between items-center p-5 bg-gray-50" onclick="toggleSrv(this)">
+          <h3 class="font-bold text-[#0D1B2E] en">Commercial Brokerage Services</h3>
+          <h3 class="font-bold text-[#0D1B2E] ar">خدمات الوساطة التجارية</h3>
+          <svg class="srv-arrow w-5 h-5 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg>
+        </div>
+        <div class="srv-body p-5 grid md:grid-cols-2 gap-2 border-t border-gray-100">
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Commercial Transactions</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Buy &amp; Sell Brokerage Deals</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">International Business Matching</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Strategic Partnerships</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Project Acquisition Support</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Investment Introductions</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Cross-Border Trade Facilitation</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">المعاملات التجارية</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">صفقات الوساطة بيعاً وشراءً</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">التوفيق التجاري الدولي</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">الشراكات الاستراتيجية</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">دعم اقتناء المشاريع</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">التعريف بالاستثمارات</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">تيسير التجارة عبر الحدود</span></div>
+        </div>
+      </div>
+
+      <div class="border border-gray-200">
+        <div class="srv-toggle flex justify-between items-center p-5 bg-gray-50" onclick="toggleSrv(this)">
+          <h3 class="font-bold text-[#0D1B2E] en">Project Development &amp; Management</h3>
+          <h3 class="font-bold text-[#0D1B2E] ar">تطوير المشاريع وإدارتها</h3>
+          <svg class="srv-arrow w-5 h-5 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg>
+        </div>
+        <div class="srv-body p-5 grid md:grid-cols-2 gap-2 border-t border-gray-100">
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Project Planning &amp; Development</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Project Delivery Systems</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Project Monitoring &amp; Reporting</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Cost Control Systems</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">PMO</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Feasibility &amp; Investment Studies</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Operational Structuring</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Business Process Optimization</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">تخطيط المشاريع وتطويرها</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">أنظمة تسليم المشاريع</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">متابعة المشاريع وإعداد التقارير</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">أنظمة ضبط التكاليف</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">مكتب إدارة المشاريع</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">دراسات الجدوى والاستثمار</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">الهيكلة التشغيلية</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">تحسين العمليات التجارية</span></div>
+        </div>
+      </div>
+
+      <div class="border border-gray-200">
+        <div class="srv-toggle flex justify-between items-center p-5 bg-gray-50" onclick="toggleSrv(this)">
+          <h3 class="font-bold text-[#0D1B2E] en">International Tendering &amp; Registration</h3>
+          <h3 class="font-bold text-[#0D1B2E] ar">دعم المناقصات الدولية والتسجيل</h3>
+          <svg class="srv-arrow w-5 h-5 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg>
+        </div>
+        <div class="srv-body p-5 grid md:grid-cols-2 gap-2 border-t border-gray-100">
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">SAM (System for Award Management)</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">USAID Registration Support</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">UN Supplier Registration</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">JCCS Registration Support</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">International Tender Participation Advisory</span></div>
+          <div class="flex items-start gap-2 en"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">Government &amp; Institutional Procurement Access</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">نظام إدارة العقود الحكومية الأمريكية (SAM)</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">دعم التسجيل في USAID</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">التسجيل كمورد أممي</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">دعم التسجيل في JCCS</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">استشارات المشاركة في المناقصات الدولية</span></div>
+          <div class="flex items-start gap-2 ar"><span class="text-yellow-500 mt-1">›</span><span class="text-gray-600 text-sm">الوصول لمشتريات الحكومات والمؤسسات</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<section id="projects" class="py-24 bg-gray-50">
+  <div class="max-w-5xl mx-auto px-4 md:px-8">
+    <div class="flex items-center gap-4 mb-8">
+      <span class="text-yellow-500 font-bold text-lg">08</span>
+      <div style="height:1px;background:#e5e7eb;flex:1"></div>
+    </div>
+    <h2 class="text-3xl md:text-5xl font-bold text-[#0D1B2E] mb-12 en">Selected Projects</h2>
+    <h2 class="text-3xl md:text-5xl font-bold text-[#0D1B2E] mb-12 ar">المشاريع المختارة</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse">
+        <thead>
+          <tr style="background:#0D1B2E;color:#fff">
+            <th class="p-4 text-left font-semibold text-sm en">Location</th>
+            <th class="p-4 text-left font-semibold text-sm en">Project</th>
+            <th class="p-4 text-right font-semibold text-sm ar">الموقع</th>
+            <th class="p-4 text-right font-semibold text-sm ar">المشروع</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="proj-row"><td class="p-4 text-sm text-gray-600 border-b en">Kuwait</td><td class="p-4 text-sm text-[#0D1B2E] font-medium border-b en">Feasibility Study &amp; Acquisition Advisory</td><td class="p-4 text-sm text-gray-600 border-b ar text-right">الكويت</td><td class="p-4 text-sm text-[#0D1B2E] font-medium border-b ar text-right">دراسة جدوى واستشارات استحواذ</td></tr>
+          <tr class="proj-row"><td class="p-4 text-sm text-gray-600 border-b en">KSA &amp; Egypt</td><td class="p-4 text-sm text-[#0D1B2E] font-medium border-b en">Medical Rehabilitation Centre &amp; Specialized Medical Center Feasibility Study</td><td class="p-4 text-sm text-gray-600 border-b ar text-right">السعودية ومصر</td><td class="p-4 text-sm text-[#0D1B2E] font-medium border-b ar text-right">دراسة جدوى لمركز تأهيل طبي ومركز طبي متخصص</td></tr>
+          <tr class="proj-row"><td class="p-4 text-sm text-gray-600 border-b en">Cairo, Egypt</td><td class="p-4 text-sm text-[#0D1B2E] font-medium border-b en">Transformation Project</td><td class="p-4 text-sm text-gray-600 border-b ar text-right">القاهرة، مصر</td><td class="p-4 text-sm text-[#0D1B2E] font-medium border-b ar text-right">مشروع تحول</td></tr>
+          <tr class="proj-row"><td class="p-4 text-sm text-gray-600 border-b en">Dammam, KSA</td><td class="p-4 text-sm text-[#0D1B2E] font-medium border-b en">Capacity Management</td><td class="p-4 text-sm text-gray-600 border-b ar text-right">الدمام، السعودية</td><td class="p-4 text-sm text-[#0D1B2E] font-medium border-b ar text-right">إدارة السعة</td></tr>
+          <tr class="proj-row"><td class="p-4 text-sm text-gray-600 border-b en">Amman, Jordan</td><td class="p-4 text-sm text-[#0D1B2E] font-medium border-b en">Fund Raising — Stock Loan</td><td class="p-4 text-sm text-gray-600 border-b ar text-right">عمان، الأردن</td><td class="p-4 text-sm text-[#0D1B2E] font-medium border-b ar text-right">جمع الأموال — قرض أسهم</td></tr>
+          <tr class="proj-row"><td class="p-4 text-sm text-gray-600 border-b en">Amman, Jordan</td><td class="p-4 text-sm text-[#0D1B2E] font-medium border-b en">Vessels Acquisitions Project</td><td class="p-4 text-sm text-gray-600 border-b ar text-right">عمان، الأردن</td><td class="p-4 text-sm text-[#0D1B2E] font-medium border-b ar text-right">مشروع الاستحواذ على السفن</td></tr>
+          <tr class="proj-row"><td class="p-4 text-sm text-gray-600 border-b en">Egypt</td><td class="p-4 text-sm text-[#0D1B2E] font-medium border-b en">Corporate Restructuring &amp; ERP Development</td><td class="p-4 text-sm text-gray-600 border-b ar text-right">مصر</td><td class="p-4 text-sm text-[#0D1B2E] font-medium border-b ar text-right">إعادة هيكلة مؤسسية وتطوير نظام تخطيط موارد المؤسسات</td></tr>
+          <tr class="proj-row"><td class="p-4 text-sm text-gray-600 border-b en">UAE</td><td class="p-4 text-sm text-[#0D1B2E] font-medium border-b en">Governance &amp; Business Setup Advisory &amp; Acquisition</td><td class="p-4 text-sm text-gray-600 border-b ar text-right">الإمارات</td><td class="p-4 text-sm text-[#0D1B2E] font-medium border-b ar text-right">استشارات حوكمة وتأسيس أعمال واستحواذ</td></tr>
+          <tr class="proj-row"><td class="p-4 text-sm text-gray-600 border-b en">Saudi Arabia</td><td class="p-4 text-sm text-[#0D1B2E] font-medium border-b en">Saudi Arabia Living Lab Centre Establishment</td><td class="p-4 text-sm text-gray-600 border-b ar text-right">المملكة العربية السعودية</td><td class="p-4 text-sm text-[#0D1B2E] font-medium border-b ar text-right">تأسيس مركز مختبر المعيشة السعودي</td></tr>
+          <tr class="proj-row"><td class="p-4 text-sm text-gray-600 border-b en">Jeddah, KSA</td><td class="p-4 text-sm text-[#0D1B2E] font-medium border-b en">Manufacturing Process Optimization Projects</td><td class="p-4 text-sm text-gray-600 border-b ar text-right">جدة، السعودية</td><td class="p-4 text-sm text-[#0D1B2E] font-medium border-b ar text-right">مشاريع تحسين عمليات التصنيع</td></tr>
+          <tr class="proj-row"><td class="p-4 text-sm text-gray-600 border-b en">Jeddah, KSA</td><td class="p-4 text-sm text-[#0D1B2E] font-medium border-b en">Market Development &amp; Sales Strategy Projects</td><td class="p-4 text-sm text-gray-600 border-b ar text-right">جدة، السعودية</td><td class="p-4 text-sm text-[#0D1B2E] font-medium border-b ar text-right">مشاريع تطوير السوق واستراتيجية المبيعات</td></tr>
+          <tr class="proj-row"><td class="p-4 text-sm text-gray-600 border-b en">Regional</td><td class="p-4 text-sm text-[#0D1B2E] font-medium border-b en">Investment Acquisition Studies &amp; Advisory</td><td class="p-4 text-sm text-gray-600 border-b ar text-right">إقليمي</td><td class="p-4 text-sm text-[#0D1B2E] font-medium border-b ar text-right">دراسات استحواذ استثماري واستشارات</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHY US ===== -->
+<section id="whyus" style="background:#0D1B2E" class="py-24">
+  <div class="max-w-5xl mx-auto px-4 md:px-8">
+    <div class="flex items-center gap-4 mb-8">
+      <span class="text-yellow-500 font-bold text-lg">09</span>
+      <div style="height:1px;background:rgba(255,255,255,.15);flex:1"></div>
+    </div>
+    <h2 class="text-3xl md:text-5xl font-bold text-white mb-12 en">Why Al-Maamoura</h2>
+    <h2 class="text-3xl md:text-5xl font-bold text-white mb-12 ar">لماذا المعمورة</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="p-6 border border-white/10">
+        <div style="width:2rem;height:2px;background:#C9A227" class="mb-4"></div>
+        <h4 class="text-white font-bold mb-3 en">Regional &amp; International Experience</h4>
+        <h4 class="text-white font-bold mb-3 ar">الخبرة الإقليمية والدولية</h4>
+        <p class="text-white/60 text-sm leading-relaxed en">60+ combined years of proven expertise across diverse markets, industries, and geographies.</p>
+        <p class="text-white/60 text-sm leading-relaxed ar">أكثر من 60 عاماً من الخبرة الموثوقة عبر أسواق وصناعات ومناطق جغرافية متنوعة.</p>
+      </div>
+      <div class="p-6 border border-white/10">
+        <div style="width:2rem;height:2px;background:#C9A227" class="mb-4"></div>
+        <h4 class="text-white font-bold mb-3 en">Strong Financial &amp; Investor Network</h4>
+        <h4 class="text-white font-bold mb-3 ar">شبكة مالية واستثمارية قوية</h4>
+        <p class="text-white/60 text-sm leading-relaxed en">Deep connections with financial institutions, investors, and commercial partners globally.</p>
+        <p class="text-white/60 text-sm leading-relaxed ar">روابط عميقة مع المؤسسات المالية والمستثمرين والشركاء التجاريين على المستوى العالمي.</p>
+      </div>
+      <div class="p-6 border border-white/10">
+        <div style="width:2rem;height:2px;background:#C9A227" class="mb-4"></div>
+        <h4 class="text-white font-bold mb-3 en">Multidisciplinary Expertise</h4>
+        <h4 class="text-white font-bold mb-3 ar">خبرة متعددة التخصصات</h4>
+        <p class="text-white/60 text-sm leading-relaxed en">Cross-sector capabilities spanning advisory, finance, brokerage, and project management.</p>
+        <p class="text-white/60 text-sm leading-relaxed ar">قدرات متعددة القطاعات تشمل الاستشارات والتمويل والوساطة وإدارة المشاريع.</p>
+      </div>
+      <div class="p-6 border border-white/10">
+        <div style="width:2rem;height:2px;background:#C9A227" class="mb-4"></div>
+        <h4 class="text-white font-bold mb-3 en">Tailored &amp; Practical Solutions</h4>
+        <h4 class="text-white font-bold mb-3 ar">حلول مخصصة وعملية</h4>
+        <p class="text-white/60 text-sm leading-relaxed en">Customised, results-driven approaches addressing each client's unique challenges.</p>
+        <p class="text-white/60 text-sm leading-relaxed ar">مناهج مخصصة وموجهة نحو النتائج تعالج التحديات الفريدة لكل عميل.</p>
+      </div>
+      <div class="p-6 border border-white/10">
+        <div style="width:2rem;height:2px;background:#C9A227" class="mb-4"></div>
+        <h4 class="text-white font-bold mb-3 en">Confidentiality &amp; Professionalism</h4>
+        <h4 class="text-white font-bold mb-3 ar">السرية والاحترافية</h4>
+        <p class="text-white/60 text-sm leading-relaxed en">The highest standards of discretion, accountability, and ethical conduct in every engagement.</p>
+        <p class="text-white/60 text-sm leading-relaxed ar">أعلى معايير التكتم والمساءلة والسلوك الأخلاقي في كل تعامل.</p>
+      </div>
+      <div class="p-6 border border-white/10">
+        <div style="width:2rem;height:2px;background:#C9A227" class="mb-4"></div>
+        <h4 class="text-white font-bold mb-3 en">Long-Term Partnership Approach</h4>
+        <h4 class="text-white font-bold mb-3 ar">نهج الشراكة طويلة الأمد</h4>
+        <p class="text-white/60 text-sm leading-relaxed en">Committed to building enduring client relationships that deliver sustained value over time.</p>
+        <p class="text-white/60 text-sm leading-relaxed ar">ملتزمون ببناء علاقات عملاء دائمة تحقق قيمة مستدامة على المدى الطويل.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT / FOOTER ===== -->
+<footer id="contact" style="background:#071220" class="py-24">
+  <div class="max-w-5xl mx-auto px-4 md:px-8">
+    <div class="flex items-center gap-4 mb-12">
+      <span class="text-yellow-500 font-bold text-lg">10</span>
+      <div style="height:1px;background:rgba(255,255,255,.1);flex:1"></div>
+    </div>
+
+    <!-- Logo + company name -->
+    <div class="flex flex-col md:flex-row gap-12 mb-16">
+      <div class="flex-shrink-0 flex flex-col items-start gap-4">
+        <div class="bg-white rounded p-2 w-24 h-24 flex items-center justify-center overflow-hidden shadow-lg">
+          <img src="./assets/logo.jpeg" alt="Al-Maamoura Logo" class="w-full h-full object-contain">
+        </div>
+        <div>
+          <div class="text-white font-bold text-xl mb-1 en">AL-MAAMOURA</div>
+          <div class="text-white font-bold text-xl mb-1 ar">المعمورة</div>
+          <div class="text-yellow-500 text-sm en">Advisory &amp; Commercial Brokerage Co.</div>
+          <div class="text-yellow-500 text-sm ar">للاستشارات والوساطة التجارية</div>
+        </div>
+        <p class="text-white/50 text-sm max-w-xs italic en">Strategic Advisory. Commercial Brokerage. Built on 60 Years of Expertise.</p>
+        <p class="text-white/50 text-sm max-w-xs italic ar">استشارات استراتيجية. وساطة تجارية. مبنية على أكثر من 60 عاماً من الخبرة.</p>
+      </div>
+
+      <!-- Contact info -->
+      <div class="flex-1 grid md:grid-cols-2 gap-8">
+        <div>
+          <h4 class="text-yellow-500 font-bold text-sm tracking-widest uppercase mb-6 en">Contact Information</h4>
+          <h4 class="text-yellow-500 font-bold text-sm tracking-widest uppercase mb-6 ar">معلومات التواصل</h4>
+          <div class="space-y-4">
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-yellow-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <div>
+                <div class="text-white/50 text-xs mb-1 en">Location</div>
+                <div class="text-white/50 text-xs mb-1 ar">الموقع</div>
+                <div class="text-white en">Amman, Jordan</div>
+                <div class="text-white ar">عمان، الأردن</div>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-yellow-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.99 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 013.9 2H7a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              <div>
+                <div class="text-white/50 text-xs mb-1 en">Phone / WhatsApp</div>
+                <div class="text-white/50 text-xs mb-1 ar">هاتف / واتساب</div>
+                <a href="tel:+962795029922" class="text-white hover:text-yellow-400 transition-colors">+962 79 502 9922</a>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-yellow-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <div>
+                <div class="text-white/50 text-xs mb-1 en">Email</div>
+                <div class="text-white/50 text-xs mb-1 ar">البريد الإلكتروني</div>
+                <a href="mailto:info@almaamoura.com" class="text-white hover:text-yellow-400 transition-colors">info@almaamoura.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div>
+          <h4 class="text-yellow-500 font-bold text-sm tracking-widest uppercase mb-6 en">Send a Message</h4>
+          <h4 class="text-yellow-500 font-bold text-sm tracking-widest uppercase mb-6 ar">أرسل رسالة</h4>
+          <form id="contactForm" onsubmit="submitForm(event)" class="space-y-3">
+            <input type="text" id="fname" required placeholder="" class="w-full bg-white/5 border border-white/10 text-white px-4 py-3 text-sm focus:outline-none focus:border-yellow-500 transition-colors rounded-sm">
+            <input type="email" id="femail" required placeholder="" class="w-full bg-white/5 border border-white/10 text-white px-4 py-3 text-sm focus:outline-none focus:border-yellow-500 transition-colors rounded-sm">
+            <input type="tel" id="fphone" placeholder="" class="w-full bg-white/5 border border-white/10 text-white px-4 py-3 text-sm focus:outline-none focus:border-yellow-500 transition-colors rounded-sm">
+            <input type="text" id="fsubject" placeholder="" class="w-full bg-white/5 border border-white/10 text-white px-4 py-3 text-sm focus:outline-none focus:border-yellow-500 transition-colors rounded-sm">
+            <textarea id="fmessage" rows="4" required placeholder="" class="w-full bg-white/5 border border-white/10 text-white px-4 py-3 text-sm focus:outline-none focus:border-yellow-500 transition-colors rounded-sm resize-none"></textarea>
+            <button type="submit" class="w-full bg-yellow-500 text-[#0D1B2E] py-3 font-bold text-sm hover:bg-yellow-400 transition-colors">
+              <span class="en">Send Message</span>
+              <span class="ar">إرسال الرسالة</span>
+            </button>
+          </form>
+          <div id="formSuccess" style="display:none" class="text-center py-8">
+            <div class="text-yellow-500 text-4xl mb-4">✓</div>
+            <p class="text-white font-bold mb-2 en">Message Sent!</p>
+            <p class="text-white font-bold mb-2 ar">تم الإرسال!</p>
+            <p class="text-white/60 text-sm en">We will get back to you within 1–2 business days.</p>
+            <p class="text-white/60 text-sm ar">سنرد عليك خلال يوم إلى يومين عمل.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="border-top:1px solid rgba(255,255,255,.1)" class="pt-8 text-center text-white/40 text-sm">
+      <span class="en">© 2025 Al-Maamoura Advisory &amp; Commercial Brokerage Co. All rights reserved.</span>
+      <span class="ar">© 2025 شركة المعمورة للاستشارات والوساطة التجارية. جميع الحقوق محفوظة.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== FLOATING BUTTONS ===== -->
+<div id="floatBtns">
+  <button onclick="openWhatsApp()" title="WhatsApp" style="display:flex;align-items:center;gap:.5rem;background:#25D366;color:#fff;padding:.75rem 1.25rem;border-radius:9999px;box-shadow:0 4px 24px rgba(37,211,102,.4);border:none;cursor:pointer;font-size:.875rem;font-weight:600;font-family:Inter,sans-serif">
+    <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    WhatsApp
+  </button>
+  <button onclick="scrollTo('#contact')" style="display:flex;align-items:center;gap:.5rem;background:#C9A227;color:#0D1B2E;padding:.75rem 1.25rem;border-radius:9999px;box-shadow:0 4px 24px rgba(0,0,0,.25);border:none;cursor:pointer;font-size:.875rem;font-weight:600;font-family:Inter,sans-serif">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="width:18px;height:18px;flex-shrink:0"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+    <span class="en">Contact</span>
+    <span class="ar">تواصل</span>
+  </button>
+</div>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+// ── Slides ─────────────────────────────────
+const SLIDES = [
+  { en: 'Aviation & Aerospace', ar: 'الطيران والفضاء' },
+  { en: 'Real Estate Development', ar: 'التطوير العقاري' },
+  { en: 'Hospitality & Tourism', ar: 'الضيافة والسياحة' },
+  { en: 'Healthcare', ar: 'الرعاية الصحية' },
+  { en: 'Renewable Energy', ar: 'الطاقة المتجددة' },
+  { en: 'Oil & Gas Services', ar: 'خدمات النفط والغاز' },
+  { en: 'Financial Services', ar: 'الخدمات المالية' },
+  { en: 'Industrial Manufacturing', ar: 'التصنيع الصناعي' }
+];
+let cur = 0, timer = null, lang = 'en';
+const slides = document.querySelectorAll('.slide');
+const sectorText = document.getElementById('sectorText');
+const dotsEl = document.getElementById('dots');
+const progressBar = document.getElementById('progressBar');
+
+// Build dots
+SLIDES.forEach((_, i) => {
+  const d = document.createElement('button');
+  d.style.cssText = `width:${i===0?'24px':'8px'};height:8px;border-radius:9999px;background:${i===0?'#C9A227':'rgba(255,255,255,.4)'};border:none;cursor:pointer;transition:all .3s;padding:0`;
+  d.onclick = () => goTo(i);
+  dotsEl.appendChild(d);
+});
+
+function updateDots() {
+  dotsEl.querySelectorAll('button').forEach((d, i) => {
+    d.style.width = i === cur ? '24px' : '8px';
+    d.style.background = i === cur ? '#C9A227' : 'rgba(255,255,255,.4)';
+  });
+}
+
+function updateSector() {
+  sectorText.style.opacity = 0;
+  setTimeout(() => {
+    sectorText.textContent = lang === 'ar' ? SLIDES[cur].ar : SLIDES[cur].en;
+    sectorText.style.opacity = 1;
+  }, 250);
+}
+
+function restartProgress() {
+  progressBar.classList.remove('running');
+  void progressBar.offsetWidth; // reflow
+  progressBar.classList.add('running');
+}
+
+function goTo(i) {
+  slides[cur].classList.remove('active');
+  cur = i;
+  slides[cur].classList.add('active');
+  updateDots();
+  updateSector();
+  restartProgress();
+}
+
+function nextSlide() { goTo((cur + 1) % SLIDES.length); }
+function prevSlide() { goTo((cur - 1 + SLIDES.length) % SLIDES.length); }
+
+function startTimer() { timer = setInterval(nextSlide, 5000); }
+function stopTimer() { clearInterval(timer); }
+
+document.getElementById('hero').addEventListener('mouseenter', stopTimer);
+document.getElementById('hero').addEventListener('mouseleave', startTimer);
+startTimer();
+restartProgress();
+
+// ── Navbar scroll ───────────────────────────
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+
+  // Floating buttons
+  const srvEl = document.getElementById('services');
+  if (srvEl) {
+    const visible = srvEl.getBoundingClientRect().top < window.innerHeight;
+    document.getElementById('floatBtns').classList.toggle('visible', visible);
+  }
+});
+
+// ── Scroll to section ──────────────────────
+function scrollTo(sel) {
+  const el = document.querySelector(sel);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+}
+
+// ── Mobile menu ────────────────────────────
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobileMenu');
+  const iconMenu = document.getElementById('menuIcon');
+  const iconClose = document.getElementById('closeIcon');
+  const open = menu.classList.toggle('open');
+  iconMenu.style.display = open ? 'none' : '';
+  iconClose.style.display = open ? '' : 'none';
+}
+
+// ── Language toggle ────────────────────────
+function toggleLang() {
+  lang = lang === 'en' ? 'ar' : 'en';
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.documentElement.lang = lang;
+  // Update floating buttons direction
+  const fb = document.getElementById('floatBtns');
+  if (lang === 'ar') {
+    fb.style.right = 'auto'; fb.style.left = '1.5rem'; fb.style.alignItems = 'flex-start';
+  } else {
+    fb.style.right = '1.5rem'; fb.style.left = 'auto'; fb.style.alignItems = 'flex-end';
+  }
+  updateSector();
+  updateFormPlaceholders();
+}
+
+// ── Form placeholders (bilingual) ─────────────
+const formFields = {
+  fname:    { en: 'Full Name',           ar: 'الاسم الكامل' },
+  femail:   { en: 'Email Address',       ar: 'عنوان البريد الإلكتروني' },
+  fphone:   { en: 'Phone Number',        ar: 'رقم الهاتف' },
+  fsubject: { en: 'Subject',             ar: 'الموضوع' },
+  fmessage: { en: 'Message',             ar: 'الرسالة' },
+};
+function updateFormPlaceholders() {
+  Object.entries(formFields).forEach(([id, labels]) => {
+    const el = document.getElementById(id);
+    if (el) el.placeholder = labels[lang];
+  });
+}
+updateFormPlaceholders();
+
+// ── Contact Form ───────────────────────────
+function submitForm(e) {
+  e.preventDefault();
+  const name    = document.getElementById('fname').value;
+  const email   = document.getElementById('femail').value;
+  const phone   = document.getElementById('fphone').value;
+  const subject = document.getElementById('fsubject').value;
+  const message = document.getElementById('fmessage').value;
+
+  const body = `Name: ${name}\nPhone: ${phone}\n\n${message}`;
+  window.location.href = `mailto:info@almaamoura.com?subject=${encodeURIComponent(subject || 'Inquiry from Website')}&body=${encodeURIComponent(body)}`;
+
+  document.getElementById('contactForm').style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+}
+
+// ── WhatsApp ───────────────────────────────
+function openWhatsApp() {
+  const msg = lang === 'ar'
+    ? 'مرحباً، أود الاستفسار عن خدماتكم.'
+    : 'Hello, I would like to inquire about your services.';
+  window.open('https://wa.me/962795029922?text=' + encodeURIComponent(msg), '_blank');
+}
+
+// ── Services accordion ─────────────────────
+function toggleSrv(toggle) {
+  const body = toggle.nextElementSibling;
+  const isOpen = body.classList.toggle('open');
+  toggle.classList.toggle('open', isOpen);
+}
+</script>
+
+</body>
+</html>
